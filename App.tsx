@@ -15,26 +15,28 @@ import {HEIGHT,WIDTH} from "./src/common/variables";
 import {Card} from "./src/Card";
 
 export type CardType = {
-    id: string,
-    title: string,
-    cardItemPrice: string,
+    id: string
+    title: string
+    cardItemPrice: string
     grade: number
+    created:string
     decKCover: ImageSourcePropType
 }
 const ARR: CardType[] = new Array(10).fill(null)
     .map((_, i) => (
             {
                 id: i + "1",
-                title: `title ${i}`,
+                title: `Some product`,
                 decKCover: realism,
-                cardItemPrice:"100500",
-                grade:i
+                cardItemPrice:"100500$",
+                grade:i,
+                created:"20 августа, 22:32"
             }
         )
     )
 
-StatusBar.setBarStyle("light-content")
-StatusBar.setBackgroundColor("black")
+StatusBar.setBarStyle("default")
+// StatusBar.setBackgroundColor("none",true)
 
 export default function App() {
 
@@ -53,9 +55,9 @@ export default function App() {
                           data={ARR}
                           renderItem={render}
                           numColumns={2}
-                          ListHeaderComponent={() => <Header/>}
-                          ListFooterComponent={() => <Footer/>}
-                          ListEmptyComponent={() => <EmptyContent/>}
+                          ListHeaderComponent={<Header/>}
+                          ListFooterComponent={<Footer/>}
+                          ListEmptyComponent={<EmptyContent/>}
                 />
             </ImageBackground>
         </View>
@@ -73,7 +75,7 @@ const styles = StyleSheet.create({
         justifyContent: "center",
     },
     flatList: {
-        paddingTop: StatusBar.currentHeight || 0,
+
     },
     columnWrapperStyle: {
         justifyContent: "space-around"

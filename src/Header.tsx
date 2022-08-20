@@ -1,4 +1,4 @@
-import {StyleSheet, TextInput, View, StyleProp, TextStyle} from "react-native";
+import {StyleSheet, TextInput, View, StatusBar} from "react-native";
 import {FONTSIZEPrimary, HEIGHT, PADDING, WIDTH} from "./common/variables";
 import {useState} from "react";
 import {CustomButton} from "./common/CustomButton";
@@ -28,8 +28,9 @@ export const Header = () => {
 
 const styles=StyleSheet.create({
     container:{
+        paddingTop: StatusBar.currentHeight || 0,
         width:WIDTH,
-        height:HEIGHT/10,
+        height:HEIGHT/9,
         paddingHorizontal:15,
         paddingVertical:5,
         backgroundColor:"rgba(5,5,5,0.2)",
