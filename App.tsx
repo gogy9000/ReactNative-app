@@ -10,6 +10,8 @@ import {HEIGHT, PADDING, WIDTH} from "./src/common/variables";
 const ARR=new Array(50).fill(null)
     .map((_,i)=>({id:i+"1",title:"title"+i}))
 
+StatusBar.setBarStyle("light-content")
+StatusBar.setBackgroundColor("black")
 export default function App() {
 
 
@@ -41,15 +43,16 @@ const styles = StyleSheet.create({
         flex: 1,
         width:WIDTH,
         height:HEIGHT,
-        marginTop:StatusBar.currentHeight||0,
-
 
     },
     backgroundImage:{
         flex:1,
-        justifyContent:"center"
+        justifyContent:"center",
+
     },
-    flatList:{},
+    flatList:{
+        paddingTop:StatusBar.currentHeight||0,
+    },
     columnWrapperStyle:{
         justifyContent:"space-around"
     },
