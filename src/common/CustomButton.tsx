@@ -1,6 +1,7 @@
 import {ColorValue, GestureResponderEvent, StyleSheet, Text, TouchableHighlight, View} from "react-native";
 import {FC, memo} from "react";
-import {HEIGHT, PADDING, WIDTH} from "./variables";
+import {FONTSIZEPrimary, FONTSIZESecondary, HEIGHT, PADDING, WIDTH} from "./variables";
+import {commonBorderStyle} from "./Styles";
 
 type CustomButtonPropsType = {
     onPress?: (event: GestureResponderEvent) => void
@@ -22,7 +23,7 @@ export const CustomButton: FC<CustomButtonPropsType> = memo((props) => {
             activeOpacity={!!activeOpacity?activeOpacity:0.2}
             underlayColor={!!underlayColor?underlayColor:"rgba(5,5,5,0.2)"}
         >
-            <View style={[styles.button, styleButton]}>
+            <View style={[styles.button,commonBorderStyle(), styleButton]}>
                 <Text style={[styles.title, styleTitle]}>
                     {title}
                 </Text>
@@ -34,15 +35,12 @@ const styles = StyleSheet.create({
     button: {
         height: (HEIGHT - PADDING * 2) / 19,
         width: (WIDTH - PADDING * 2) / 2,
+        justifyContent:"center",
         alignItems: "center",
-        padding: 5,
-        borderStyle: "solid",
-        borderColor: "#DDDDDD",
-        borderRadius: 3,
-        borderWidth: 1
+
     },
     title: {
         color: "#DDDDDD",
-        fontSize:22
+        fontSize:FONTSIZEPrimary
     }
 })

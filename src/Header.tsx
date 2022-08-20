@@ -1,7 +1,8 @@
-import {StyleSheet, TextInput, View} from "react-native";
-import {HEIGHT, PADDING, WIDTH} from "./common/variables";
+import {StyleSheet, TextInput, View, StyleProp, TextStyle} from "react-native";
+import {FONTSIZEPrimary, HEIGHT, PADDING, WIDTH} from "./common/variables";
 import {useState} from "react";
 import {CustomButton} from "./common/CustomButton";
+import {commonBorderStyle} from "./common/Styles";
 
 export const Header = () => {
     const [inputValue,setInputValue]=useState("")
@@ -14,14 +15,13 @@ export const Header = () => {
     return (
         <View style={styles.container}>
             <TextInput
-                style={styles.searchOrCreateInput}
+                style={[styles.searchOrCreateInput, commonBorderStyle()]}
                 onChangeText={onTextInput}
                 value={inputValue}
                 placeholderTextColor={"#DDDDDD"}
                 placeholder={"Search..."}
             />
         <CustomButton onPress={onPressButton} />
-
         </View>
     )
 }
@@ -41,12 +41,7 @@ const styles=StyleSheet.create({
         height:(HEIGHT-PADDING*2)/19,
         width:(WIDTH-PADDING*2)/2,
         paddingHorizontal:10,
-        borderStyle:"solid",
-        borderColor:"#DDDDDD",
-        borderWidth:1,
-        borderRadius:3,
-        fontSize:22,
+        fontSize:FONTSIZEPrimary,
         color:"white",
-
     }
 })
