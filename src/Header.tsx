@@ -1,5 +1,5 @@
 import {StyleSheet, TextInput, View, StatusBar} from "react-native";
-import {FONTSIZEPrimary, HEIGHT, PADDING, WIDTH} from "./common/Variables";
+import {BACKGROUNDCOLOR, FONTSIZEPrimary, HEIGHT, PADDING, TEXTCOLOR, WIDTH} from "./common/Variables";
 import {useState} from "react";
 import {CustomButton} from "./common/CustomButton";
 import {commonBorderStyle} from "./common/Styles";
@@ -18,11 +18,11 @@ export const Header = () => {
                 style={[styles.searchOrCreateInput, commonBorderStyle()]}
                 onChangeText={onTextInput}
                 value={inputValue}
-                placeholderTextColor={"#DDDDDD"}
+                placeholderTextColor={TEXTCOLOR}
                 placeholder={"Search..."}
                 caretHidden
             />
-        <CustomButton onPress={onPressButton} />
+        <CustomButton styleButton={styles.button} onPress={onPressButton} />
         </View>
     )
 }
@@ -34,16 +34,20 @@ const styles=StyleSheet.create({
         height:HEIGHT/9,
         paddingHorizontal:15,
         paddingVertical:5,
-        backgroundColor:"rgba(5,5,5,0.2)",
+        backgroundColor:BACKGROUNDCOLOR,
         flexDirection:"row",
         alignItems:"center",
         justifyContent:"space-between",
+    },
+    button:{
+        height: (HEIGHT - PADDING * 2) / 19,
+         width: (WIDTH - PADDING * 2) / 2,
     },
     searchOrCreateInput:{
         height:(HEIGHT-PADDING*2)/19,
         width:(WIDTH-PADDING*2)/2,
         paddingHorizontal:10,
         fontSize:FONTSIZEPrimary,
-        color:"white",
+        color:TEXTCOLOR,
     }
 })

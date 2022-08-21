@@ -5,7 +5,7 @@ export const EmptyContent = () => {
     return (
         <View style={styles.container}>
             <Text style={styles.title}>
-                o curva! list is emty!
+                O curva! list is empty!
             </Text>
         </View>
     )

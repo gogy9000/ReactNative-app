@@ -4,7 +4,7 @@ import {
     ImageSourcePropType,
     ListRenderItem,
     StatusBar,
-    StyleSheet,
+    StyleSheet, Text,
     View
 } from 'react-native';
 // @ts-ignore
@@ -14,6 +14,7 @@ import {Footer} from "./src/Footer";
 import {EmptyContent} from "./src/EmptyContent";
 import {HEIGHT, WIDTH} from "./src/common/Variables";
 import {Card} from "./src/Card";
+import {AppBar} from "./src/AppBar";
 
 export type CardType = {
     id: string
@@ -59,6 +60,7 @@ export default function App() {
                 ListFooterComponent={<Footer/>}
                 ListEmptyComponent={<EmptyContent/>}
             />
+            <AppBar/>
         </ImageBackground>
 
     );

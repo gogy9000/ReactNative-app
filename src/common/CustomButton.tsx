@@ -1,6 +1,6 @@
 import {ColorValue, GestureResponderEvent, StyleSheet, Text, TouchableHighlight, View} from "react-native";
-import {FC, memo} from "react";
-import {FONTSIZEPrimary, FONTSIZESecondary, HEIGHT, PADDING, WIDTH} from "./Variables";
+import {FC, memo, ReactElement} from "react";
+import {BACKGROUNDCOLOR, FONTSIZEPrimary, PADDING, TEXTCOLOR, WIDTH} from "./Variables";
 import {commonBorderStyle} from "./Styles";
 
 type CustomButtonPropsType = {
@@ -8,11 +8,13 @@ type CustomButtonPropsType = {
     title?: string
     styleButton?: Object
     styleTitle?: Object
-    activeOpacity?:number
-    underlayColor?:ColorValue
+    activeOpacity?: number
+    underlayColor?: ColorValue
+    children?: ReactElement|string
 }
 export const CustomButton: FC<CustomButtonPropsType> = memo((props) => {
-    const {onPress, title="Button", styleButton, styleTitle,activeOpacity,underlayColor} = props
+    const {children, onPress, title = "Button", styleButton, styleTitle, activeOpacity, underlayColor} = props
+
     const onPressHandler = (event: GestureResponderEvent) => {
         onPress && onPress(event)
     }
@@ -20,27 +22,27 @@ export const CustomButton: FC<CustomButtonPropsType> = memo((props) => {
     return (
         <TouchableHighlight
             onPress={onPressHandler}
-            activeOpacity={!!activeOpacity?activeOpacity:0.2}
-            underlayColor={!!underlayColor?underlayColor:"rgba(5,5,5,0.2)"}
+            activeOpacity={!!activeOpacity ? activeOpacity : 0.2}
+            style={[styles.button, commonBorderStyle(), styleButton]}
+            underlayColor={!!underlayColor ? underlayColor : BACKGROUNDCOLOR}
         >
-            <View style={[styles.button,commonBorderStyle(), styleButton]}>
-                <Text style={[styles.title, styleTitle]}>
-                    {title}
-                </Text>
-            </View>
+            <Text style={[styles.title, styleTitle]}>
+                {children || title}
+            </Text>
         </TouchableHighlight>
     )
 })
 const styles = StyleSheet.create({
     button: {
-        height: (HEIGHT - PADDING * 2) / 19,
-        width: (WIDTH - PADDING * 2) / 2,
-        justifyContent:"center",
+        minWidth: (WIDTH - PADDING * 2) / 7,
+        flexWrap:"nowrap",
+        paddingHorizontal: 5,
+        justifyContent: "center",
         alignItems: "center",
 
     },
     title: {
-        color: "#DDDDDD",
-        fontSize:FONTSIZEPrimary
+        color: TEXTCOLOR,
+        fontSize: FONTSIZEPrimary
     }
 })
