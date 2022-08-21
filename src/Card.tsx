@@ -2,7 +2,7 @@ import {FC} from "react";
 import {ImageBackground, Text, View, StyleSheet} from "react-native";
 import {commonBorderStyle} from "./common/Styles";
 import {CardType} from "../App";
-import {FONTSIZEPrimary, FONTSIZESecondary, HEIGHT, MARGIN, PADDING, WIDTH} from "./common/variables";
+import {FONTSIZEPrimary, FONTSIZESecondary, HEIGHT, MARGIN, PADDING, TEXTCOLOR, WIDTH} from "./common/Variables";
 
 type CardPropsType = {
     card: CardType
@@ -42,20 +42,18 @@ const styles = StyleSheet.create({
     },
     title: {
         fontSize: FONTSIZEPrimary,
-        color: "#DDDDDD",
+        color: TEXTCOLOR,
         alignSelf:"center",
-
     },
     price: {
         fontSize: FONTSIZESecondary,
-        color: "#DDDDDD"
+        color: TEXTCOLOR
     },
     grade: {
         fontSize: FONTSIZESecondary,
-        color: "#DDDDDD"
+        color: TEXTCOLOR
     },
     created:{
-        color: "#DDDDDD"
+        color: TEXTCOLOR
     }
-
 })

@@ -1,5 +1,5 @@
 import {StyleSheet, TextInput, View, StatusBar} from "react-native";
-import {FONTSIZEPrimary, HEIGHT, PADDING, WIDTH} from "./common/variables";
+import {FONTSIZEPrimary, HEIGHT, PADDING, WIDTH} from "./common/Variables";
 import {useState} from "react";
 import {CustomButton} from "./common/CustomButton";
 import {commonBorderStyle} from "./common/Styles";

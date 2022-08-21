@@ -1,6 +1,6 @@
 import {ColorValue, GestureResponderEvent, StyleSheet, Text, TouchableHighlight, View} from "react-native";
 import {FC, memo} from "react";
-import {FONTSIZEPrimary, FONTSIZESecondary, HEIGHT, PADDING, WIDTH} from "./variables";
+import {FONTSIZEPrimary, FONTSIZESecondary, HEIGHT, PADDING, WIDTH} from "./Variables";
 import {commonBorderStyle} from "./Styles";
 
 type CustomButtonPropsType = {

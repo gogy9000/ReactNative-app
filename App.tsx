@@ -12,7 +12,7 @@ import realism from './assets/realizm.jpg'
 import {Header} from "./src/Header";
 import {Footer} from "./src/Footer";
 import {EmptyContent} from "./src/EmptyContent";
-import {HEIGHT,WIDTH} from "./src/common/variables";
+import {HEIGHT, WIDTH} from "./src/common/Variables";
 import {Card} from "./src/Card";
 
 export type CardType = {
@@ -20,7 +20,7 @@ export type CardType = {
     title: string
     cardItemPrice: string
     grade: number
-    created:string
+    created: string
     decKCover: ImageSourcePropType
 }
 const ARR: CardType[] = new Array(10).fill(null)
@@ -29,9 +29,9 @@ const ARR: CardType[] = new Array(10).fill(null)
                 id: i + "1",
                 title: `Some product`,
                 decKCover: realism,
-                cardItemPrice:"100500$",
-                grade:i,
-                created:"20 августа, 22:32"
+                cardItemPrice: "100500$",
+                grade: i,
+                created: "20 августа, 22:32"
             }
         )
     )
@@ -48,54 +48,32 @@ export default function App() {
     }
 
     return (
-        <View style={styles.container}>
-            <ImageBackground source={realism} resizeMode={"cover"}>
 
-                <FlatList style={styles.flatList}
-                          columnWrapperStyle={styles.columnWrapperStyle}
-                          data={ARR}
-                          renderItem={render}
-                          numColumns={2}
-                          ListHeaderComponent={<Header/>}
-                          ListFooterComponent={<Footer/>}
-                          ListEmptyComponent={<EmptyContent/>}
-                />
-            </ImageBackground>
-        </View>
+        <ImageBackground style={styles.imageBackground} source={realism} resizeMode={"cover"}>
+            <FlatList
+                columnWrapperStyle={styles.columnWrapperStyle}
+                data={ARR}
+                renderItem={render}
+                numColumns={2}
+                ListHeaderComponent={<Header/>}
+                ListFooterComponent={<Footer/>}
+                ListEmptyComponent={<EmptyContent/>}
+            />
+        </ImageBackground>
+
     );
 }
 
 const styles = StyleSheet.create({
-    container: {
+    imageBackground:{
         flex: 1,
         width: WIDTH,
         height: HEIGHT,
-    },
-    backgroundImage: {
-        flex: 1,
-        justifyContent: "center",
-    },
-    flatList: {
-
     },
     columnWrapperStyle: {
         justifyContent: "space-around"
     },
 });
-
-// input: {
-//     width: 100,
-//         height: 50,
-//         backgroundColor: 'white'
-// },
-// pressable:{
-//     backgroundColor:"black",
-//         borderStyle:"solid",
-//         borderColor:"white",
-//         borderWidth:1
-//
-// },
-
 
 {/*<Text style={{color: "white"}}>ololo</Text>*/
 }

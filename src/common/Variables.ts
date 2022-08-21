@@ -4,3 +4,4 @@ export const PADDING = 30
 export const MARGIN=30
 export const FONTSIZEPrimary=22
 export const FONTSIZESecondary=15
+export const TEXTCOLOR="#DDDDDD"
