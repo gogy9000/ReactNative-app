@@ -1,11 +1,12 @@
 import {Text, View,StyleSheet} from "react-native";
 import {FONTSIZEPrimary, HEIGHT, PADDING, WIDTH} from "./common/variables";
+import {commonBorderStyle} from "./common/Styles";
 
 export const Footer = () => {
     return (
-        <View style={styles.container}>
-            <Text>
-                filter
+        <View style={[styles.container]}>
+            <Text style={styles.title}>
+                Все наши права защищены, но это не точно.
             </Text>
         </View>
     )
@@ -13,10 +14,16 @@ export const Footer = () => {
 
 const styles=StyleSheet.create({
     container:{
+        flex:1,
         height:(HEIGHT-PADDING*2)/19,
-        width:(WIDTH-PADDING*2)/2,
+        width:WIDTH,
         paddingHorizontal:10,
         fontSize:FONTSIZEPrimary,
-        color:"white",
+        backgroundColor:"rgba(5,5,5,0.2)",
+        justifyContent:"center",
+        alignItems:"center"
+    },
+    title:{
+        color:"#DDDDDD"
     }
 })

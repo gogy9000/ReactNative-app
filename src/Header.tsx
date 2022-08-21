@@ -20,6 +20,7 @@ export const Header = () => {
                 value={inputValue}
                 placeholderTextColor={"#DDDDDD"}
                 placeholder={"Search..."}
+                caretHidden
             />
         <CustomButton onPress={onPressButton} />
         </View>

@@ -7,6 +7,7 @@ import {
     StyleSheet,
     View
 } from 'react-native';
+// @ts-ignore
 import realism from './assets/realizm.jpg'
 import {Header} from "./src/Header";
 import {Footer} from "./src/Footer";
@@ -35,21 +36,21 @@ const ARR: CardType[] = new Array(10).fill(null)
         )
     )
 
-StatusBar.setBarStyle("default")
-// StatusBar.setBackgroundColor("none",true)
+StatusBar.setBarStyle("light-content")
+
 
 export default function App() {
 
-
-    const render: ListRenderItem<CardType> = (props) => {
+    const render: ListRenderItem<CardType> = ({item}) => {
         return (
-            <Card card={props.item}/>
+            <Card card={item}/>
         )
     }
 
     return (
         <View style={styles.container}>
             <ImageBackground source={realism} resizeMode={"cover"}>
+
                 <FlatList style={styles.flatList}
                           columnWrapperStyle={styles.columnWrapperStyle}
                           data={ARR}
