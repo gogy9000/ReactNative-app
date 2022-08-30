@@ -3,7 +3,7 @@ import {ImageSourcePropType} from "react-native";
 import realism from "./common/assets/realizm.jpg";
 
 export type TodoItem = {
-    id: string | Uint8Array,
+    id: string,
     title: string,
     decKCover: ImageSourcePropType,
     status: number
