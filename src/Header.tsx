@@ -1,15 +1,20 @@
 import {StyleSheet, TextInput, View, StatusBar} from "react-native";
 import {BACKGROUNDCOLOR, FONTSIZEPrimary, HEIGHT, PADDING, TEXTCOLOR, WIDTH} from "./common/Variables";
-import {useState} from "react";
+import {FC, memo, useState} from "react";
 import {CustomButton} from "./common/CustomButton";
 import {commonBorderStyle} from "./common/Styles";
 
-export const Header = () => {
+
+type HeaderProps={
+    createTodoHandler:(newTodoTitle:string)=>void
+}
+export const Header:FC<HeaderProps> = memo( ({createTodoHandler}) => {
     const [inputValue,setInputValue]=useState("")
     const onTextInput = (value:string) => {
         setInputValue(value)
     }
     const onPressButton = () => {
+        createTodoHandler(inputValue)
         setInputValue("")
     }
     return (
@@ -22,10 +27,12 @@ export const Header = () => {
                 placeholder={"Search..."}
                 caretHidden
             />
-        <CustomButton styleButton={styles.button} onPress={onPressButton} />
+            <CustomButton styleButton={styles.button} onPress={onPressButton}>
+                Create todo
+            </CustomButton>
         </View>
     )
-}
+})
 
 const styles=StyleSheet.create({
     container:{

@@ -3,12 +3,13 @@ import {ImageBackground, Text, View, StyleSheet} from "react-native";
 import {commonBorderStyle} from "./common/Styles";
 import {CardType} from "../App";
 import {FONTSIZEPrimary, FONTSIZESecondary, HEIGHT, MARGIN, PADDING, TEXTCOLOR, WIDTH} from "./common/Variables";
+import {TodoItem} from "./Main";
 
 type CardPropsType = {
-    card: CardType
+    todo: TodoItem
 }
 export const Card: FC<CardPropsType> = (props) => {
-    const {grade, title, cardItemPrice, created, decKCover} = props.card
+    const {title,  decKCover} = props.todo
 
     return (
         <View style={[styles.card, commonBorderStyle(10)]}>
@@ -18,9 +19,9 @@ export const Card: FC<CardPropsType> = (props) => {
                 borderRadius={10}
                 resizeMode={"cover"}>
                 <Text style={styles.title}>{title}</Text>
-                <Text style={styles.price}>Price: {cardItemPrice}</Text>
-                <Text style={styles.grade}>Grade: {grade}</Text>
-                <Text style={styles.created}>{created}</Text>
+                {/*<Text style={styles.price}>Price: {cardItemPrice}</Text>*/}
+                {/*<Text style={styles.grade}>Grade: {grade}</Text>*/}
+                {/*<Text style={styles.created}>{created}</Text>*/}
             </ImageBackground>
         </View>
     )

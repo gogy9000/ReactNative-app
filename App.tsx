@@ -8,13 +8,8 @@ import {
     View
 } from 'react-native';
 // @ts-ignore
-import realism from './assets/realizm.jpg'
-import {Header} from "./src/Header";
-import {Footer} from "./src/Footer";
-import {EmptyContent} from "./src/EmptyContent";
-import {HEIGHT, WIDTH} from "./src/common/Variables";
-import {Card} from "./src/Card";
-import {AppBar} from "./src/AppBar";
+import realism from './src/common/assets/realizm.jpg'
+import {Main} from "./src/Main";
 
 export type CardType = {
     id: string
@@ -24,58 +19,13 @@ export type CardType = {
     created: string
     decKCover: ImageSourcePropType
 }
-const ARR: CardType[] = new Array(10).fill(null)
-    .map((_, i) => (
-            {
-                id: i + "1",
-                title: `Some product`,
-                decKCover: realism,
-                cardItemPrice: "100500$",
-                grade: i,
-                created: "20 августа, 22:32"
-            }
-        )
-    )
-
-StatusBar.setBarStyle("light-content")
-
 
 export default function App() {
-
-    const render: ListRenderItem<CardType> = ({item}) => {
-        return (
-            <Card card={item}/>
-        )
-    }
-
     return (
-
-        <ImageBackground style={styles.imageBackground} source={realism} resizeMode={"cover"}>
-            <FlatList
-                columnWrapperStyle={styles.columnWrapperStyle}
-                data={ARR}
-                renderItem={render}
-                numColumns={2}
-                ListHeaderComponent={<Header/>}
-                ListFooterComponent={<Footer/>}
-                ListEmptyComponent={<EmptyContent/>}
-            />
-            <AppBar/>
-        </ImageBackground>
-
+        <Main/>
     );
 }
 
-const styles = StyleSheet.create({
-    imageBackground:{
-        flex: 1,
-        width: WIDTH,
-        height: HEIGHT,
-    },
-    columnWrapperStyle: {
-        justifyContent: "space-around"
-    },
-});
 
 {/*<Text style={{color: "white"}}>ololo</Text>*/
 }
