@@ -1,14 +1,15 @@
-import {FC} from "react";
+import {FC, ReactElement} from "react";
 import {ImageBackground, Text, View, StyleSheet} from "react-native";
 import {commonBorderStyle} from "./common/Styles";
 import {CardType} from "../App";
 import {FONTSIZEPrimary, FONTSIZESecondary, HEIGHT, MARGIN, PADDING, TEXTCOLOR, WIDTH} from "./common/Variables";
-import {TodoItem} from "./Main";
+import {TodoItem} from "./TodoReducer";
 
 type CardPropsType = {
     todo: TodoItem
+    children?:ReactElement
 }
-export const Card: FC<CardPropsType> = (props) => {
+export const Todo: FC<CardPropsType> = (props) => {
     const {title,  decKCover} = props.todo
 
     return (
@@ -19,9 +20,7 @@ export const Card: FC<CardPropsType> = (props) => {
                 borderRadius={10}
                 resizeMode={"cover"}>
                 <Text style={styles.title}>{title}</Text>
-                {/*<Text style={styles.price}>Price: {cardItemPrice}</Text>*/}
-                {/*<Text style={styles.grade}>Grade: {grade}</Text>*/}
-                {/*<Text style={styles.created}>{created}</Text>*/}
+                {props.children||null}
             </ImageBackground>
         </View>
     )
@@ -37,7 +36,7 @@ const styles = StyleSheet.create({
     },
     deckCover: {
         flex: 1,
-        justifyContent:"flex-end",
+        justifyContent:"flex-start",
         paddingHorizontal: PADDING / 3,
         paddingVertical:PADDING/3
     },

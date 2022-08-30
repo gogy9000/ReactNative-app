@@ -5,91 +5,75 @@ import {
     ListRenderItem,
     StatusBar,
     StyleSheet,
+    Text,
 } from 'react-native';
 // @ts-ignore
 import realism from "./common/assets/realizm.jpg"
 import {Header} from "./Header";
 import {Footer} from "./Footer";
 import {EmptyContent} from "./EmptyContent";
-import {Card} from "./Card";
+import {Todo} from "./Todo";
 import {AppBar} from "./AppBar";
 import {HEIGHT, WIDTH} from "./common/Variables";
 import {useReducer} from "react";
+import uuid from 'react-native-uuid'
+import {initState, TodoItem, todoReducer} from "./TodoReducer";
 
-export type CardType = {
-    id: string
-    title: string
-    cardItemPrice: string
-    grade: number
-    created: string
-    decKCover: ImageSourcePropType
+export type TaskType = { todoId: string, taskId: string, taskTitle: string, taskStatus: string }
+
+export type InitTaskType = {
+    tasks: { [todoId: string]: TaskType[] }
 }
-const ARR: CardType[] = new Array(10).fill(null)
-    .map((_, i) => (
-            {
-                id: i + "1",
-                title: `Some product`,
-                decKCover: realism,
-                cardItemPrice: "100500$",
-                grade: i,
-                created: "20 августа, 22:32"
-            }
-        )
-    )
-export type TodoItem = {
-    id: string|Uint8Array,
-    title: string,
-    decKCover: ImageSourcePropType,
-    status: number
+
+const initTaskState: InitTaskType = {
+    tasks: {}
 }
- export type InitStateType = {
-    todos: TodoItem[]
-}
-const initState: InitStateType = {
-    todos: []
-}
-const todoReducer = (state: InitStateType, action: { type: string,  todoItem:TodoItem }): InitStateType => {
+
+const taskReducer = (state: InitTaskType, action: { type: string, task: TaskType }): InitTaskType => {
     switch (action.type) {
-        case "CREATE-TODO":
-        return {...state,
-            todos:[...state.todos,action.todoItem]
-        }
-        case "CHANGE-TODO":
+        case "ADD-TASK":
             return {
                 ...state,
-                todos: state.todos.map((todo:TodoItem) =>
-                    todo.id === action.todoItem.id ? {
-                        id: action.todoItem.id,
-                        title: action.todoItem.title,
-                        status: action.todoItem.status,
-                        decKCover: realism
-                    } : todo
-                )
+                tasks: {...state.tasks, [action.task.todoId]: [action.task, ...state.tasks[action.task.todoId]]}
             }
-        case "DELETE-TODO":
-            return {...state,
-               todos: state.todos.filter((todo)=>todo.id!==action.todoItem.id)
+        case "CHANGE-TASK":
+            return {
+                ...state,
+                tasks: {
+                    ...state.tasks, [action.task.todoId]: state.tasks[action.task.todoId]
+                        .map((task) => task.taskId === action.task.taskId ? action.task : task)
+                }
+            }
+        case "DELETE-TASK":
+            return {
+                ...state,
+                tasks: {
+                    ...state.tasks, [action.task.todoId]: state.tasks[action.task.todoId]
+                        .filter((task) => task.taskId !== action.task.taskId)
+                }
             }
         default:
             return state
     }
-
 }
-
 
 export const Main = () => {
     StatusBar.setBarStyle("light-content")
-    const [stateTodo, dispatch] = useReducer(todoReducer, initState)
+    const [stateTodo, dispatchTodo] = useReducer(todoReducer, initState)
+    const [stateTask, dispatchTask] = useReducer(taskReducer, initTaskState)
 
     const render: ListRenderItem<TodoItem> = ({item}) => {
         return (
-            <Card todo={item}/>
+            <Todo todo={item}>
+                <Text>azaza</Text>
+            </Todo>
         )
     }
 
     const createTodoHandler = (newTodoTitle: string) => {
-        dispatch({type:"CREATE-TODO",todoItem:{decKCover:realism,status:0,title:newTodoTitle,id:"uuid.v1()"}})
+        dispatchTodo({type: "CREATE-TODO", todoItem: {decKCover: realism, status: 0, title: newTodoTitle, id: uuid.v1()}})
     }
+
 
     return (
 
@@ -119,3 +103,16 @@ const styles = StyleSheet.create({
         justifyContent: "space-around"
     },
 });
+
+// const ARR: CardType[] = new Array(10).fill(null)
+//     .map((_, i) => (
+//             {
+//                 id: i + "1",
+//                 title: `Some product`,
+//                 decKCover: realism,
+//                 cardItemPrice: "100500$",
+//                 grade: i,
+//                 created: "20 августа, 22:32"
+//             }
+//         )
+//     )
