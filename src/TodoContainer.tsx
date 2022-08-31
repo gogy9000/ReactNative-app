@@ -1,23 +1,21 @@
 import {FC, ReactElement, useState} from "react";
-import {ImageBackground, Text, View, StyleSheet, Pressable, Modal, ImageSourcePropType} from "react-native";
+import {ImageBackground, Text, View, StyleSheet, Pressable, Modal} from "react-native";
 import {commonBorderStyle} from "./common/Styles";
-import {CardType} from "../App";
 import {FONTSIZEPrimary, FONTSIZESecondary, HEIGHT, MARGIN, PADDING, TEXTCOLOR, WIDTH} from "./common/Variables";
-import {TodoItem} from "./TodoReducer";
+import {TodoItem} from "./BLL/TodoReducer";
 import {CustomButton} from "./common/CustomButton";
-import {TaskType} from "./Main";
 import uuid from "react-native-uuid";
+import {TaskType} from "./BLL/TaskReducer";
 
-type CardPropsType = {
+type TodoContainerProps = {
     todo: TodoItem
     children?: ReactElement
     onPressHandler?: () => void
     addTaskHandler:(task:TaskType)=>void
-
 }
-export const Todo: FC<CardPropsType> = (props) => {
+
+export const TodoContainer: FC<TodoContainerProps> = (props) => {
     const {addTaskHandler}=props
-    const {title, decKCover} = props.todo
 
     const [isModalVisible, setIsModalVisible]=useState(false)
 
@@ -26,9 +24,9 @@ export const Todo: FC<CardPropsType> = (props) => {
             setIsModalVisible(!isModalVisible)
         }}>
             <View style={[stylesTodo.card, commonBorderStyle(10)]}>
-                <Task addTaskHandler={addTaskHandler} todo={props.todo}>
+                <Todo addTaskHandler={addTaskHandler} todo={props.todo}>
                     {props.children}
-                </Task>
+                </Todo>
             </View>
             <Modal
 
@@ -39,9 +37,9 @@ export const Todo: FC<CardPropsType> = (props) => {
 
             >
                 <View style={[stylesTodo.modal, commonBorderStyle(10)]}>
-                    <Task addTaskHandler={addTaskHandler} todo={props.todo}>
+                    <Todo addTaskHandler={addTaskHandler} todo={props.todo}>
                         {props.children}
-                    </Task>
+                    </Todo>
                 </View>
             </Modal>
         </Pressable>
@@ -53,7 +51,7 @@ type TaskProps={
     addTaskHandler:(task:TaskType)=>void
 }
 
-export const Task:FC<TaskProps> = (props) => {
+export const Todo:FC<TaskProps> = (props) => {
     const {children,addTaskHandler,todo}=props
     const onAddTask = () => {
         const newTaskId=uuid.v1().toString()

@@ -1,6 +1,7 @@
 import {ImageSourcePropType} from "react-native";
 // @ts-ignore
-import realism from "./common/assets/realizm.jpg";
+import realism from "../common/assets/realizm.jpg";
+import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 
 export type TodoItem = {
     id: string,
@@ -11,9 +12,24 @@ export type TodoItem = {
 export type InitStateType = {
     todos: TodoItem[]
 }
-export const initState: InitStateType = {
+export const initialState: InitStateType = {
     todos: []
 }
+export const todoSlice=createSlice({
+    name:"todo",
+    initialState,
+    reducers:{
+        createTodoList:(state,action:PayloadAction<TodoItem>)=>{
+           state.todos.push(action.payload)
+        },
+        updateTodoList:(state,action:PayloadAction<TodoItem>)=>{
+            state.todos=state.todos.map((todo)=>todo.id===action.payload.id?action.payload:todo)
+        },
+        deleteTodoList:(state,action:PayloadAction<TodoItem>)=>{
+            state.todos=state.todos.filter((todo)=>todo.id!==action.payload.id)
+        }
+    }
+})
 export const todoReducer = (state: InitStateType, action: { type: string, todoItem: TodoItem }): InitStateType => {
     switch (action.type) {
         case "CREATE-TODO":

@@ -1,93 +1,48 @@
-import {
-    FlatList,
-    ImageBackground,
-    ImageSourcePropType,
-    ListRenderItem, Modal,
-    StatusBar,
-    StyleSheet,
-    Text, View,
-} from 'react-native';
+import {FlatList, ImageBackground, ListRenderItem, StatusBar, StyleSheet, Text,} from 'react-native';
 // @ts-ignore
 import realism from "./common/assets/realizm.jpg"
 import {Header} from "./Header";
 import {Footer} from "./Footer";
 import {EmptyContent} from "./EmptyContent";
-import {stylesTodo, Todo} from "./Todo";
+import {TodoContainer} from "./TodoContainer";
 import {AppBar} from "./AppBar";
 import {HEIGHT, WIDTH} from "./common/Variables";
-import {useReducer, useState} from "react";
 import uuid from 'react-native-uuid'
-import {initState, TodoItem, todoReducer} from "./TodoReducer";
+import {TodoItem, todoSlice} from "./BLL/TodoReducer";
+import {taskSlice, TaskType} from "./BLL/TaskReducer";
+import {useDispatch, useSelector} from "react-redux";
+import {RootState} from "./BLL/Store";
 
-export type TaskType = { todoId: string, taskId: string, taskTitle: string, taskStatus: string }
-
-export type InitTaskType = {
-    tasks: { [todoId: string]: TaskType[] }
-}
-
-const initTaskState: InitTaskType = {
-    tasks: {}
-}
-
-const taskReducer = (state: InitTaskType, action: { type: string, task: TaskType }): InitTaskType => {
-    switch (action.type) {
-        case "CREATE-TODO":
-            return {...state,
-                tasks: {...state.tasks,[action.task.todoId]:[]}}
-        case "ADD-TASK":
-            return {
-                ...state,
-                tasks: {...state.tasks, [action.task.todoId]:[...state.tasks[action.task.todoId],action.task]}
-            }
-        case "CHANGE-TASK":
-            return {
-                ...state,
-                tasks: {
-                    ...state.tasks, [action.task.todoId]: state.tasks[action.task.todoId]
-                        .map((task) => task.taskId === action.task.taskId ? action.task : task)
-                }
-            }
-        case "DELETE-TASK":
-            return {
-                ...state,
-                tasks: {
-                    ...state.tasks, [action.task.todoId]: state.tasks[action.task.todoId]
-                        .filter((task) => task.taskId !== action.task.taskId)
-                }
-            }
-        default:
-            return state
-    }
-}
 StatusBar.setBarStyle("light-content")
 export const Main = () => {
 
-    const [stateTodo, dispatchTodo] = useReducer(todoReducer, initState)
-    const [stateTask, dispatchTask] = useReducer(taskReducer, initTaskState)
+    const todoList = useSelector((state: RootState) => state.todoListState.todos)
+    const tasks = useSelector((state: RootState) => state.tasksState.tasksList)
 
-    const addTaskHandler = (task:TaskType) => {
-        dispatchTask({type:"ADD-TASK",task})
+    const dispatch = useDispatch()
+
+    const addTaskHandler = (task: TaskType) => {
+        dispatch(taskSlice.actions.addTask(task))
     }
 
     const render: ListRenderItem<TodoItem> = ({item}) => {
 
         return (
-            <Todo addTaskHandler={addTaskHandler} todo={item}>
+            <TodoContainer addTaskHandler={addTaskHandler} todo={item}>
                 <>
-                    {stateTask.tasks[item.id]?.map((task)=><Text>{task.taskTitle}</Text>)}
+                    {tasks[item.id]?.map((task) => <Text key={task.taskId}>{task.taskTitle}</Text>)}
                 </>
-            </Todo>
+            </TodoContainer>
 
         )
     }
 
     const createTodoHandler = (newTodoTitle: string) => {
-        const newId=uuid.v1().toString()
-        dispatchTodo({
-            type: "CREATE-TODO",
-            todoItem: {decKCover: realism, status: 0, title: newTodoTitle, id:newId}
-        })
-        dispatchTask({type:"CREATE-TODO",task:{todoId: newId, taskId: "string", taskTitle: "string", taskStatus: "string"}})
+        const newId = uuid.v1().toString()
+        dispatch(todoSlice.actions.createTodoList(
+                {decKCover: realism, status: 0, title: newTodoTitle, id: newId}
+            )
+        )
     }
 
 
@@ -96,8 +51,8 @@ export const Main = () => {
         <ImageBackground style={styles.imageBackground} source={realism} resizeMode={"cover"}>
             <FlatList
                 columnWrapperStyle={styles.columnWrapperStyle}
-                data={stateTodo.todos}
-                extraData={stateTask.tasks}
+                data={todoList}
+                extraData={tasks}
                 renderItem={render}
                 numColumns={2}
                 ListHeaderComponent={<Header createTodoHandler={createTodoHandler}/>}

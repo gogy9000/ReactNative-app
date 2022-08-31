@@ -1,28 +1,14 @@
-import {
-    FlatList,
-    ImageBackground,
-    ImageSourcePropType,
-    ListRenderItem,
-    StatusBar,
-    StyleSheet, Text,
-    View
-} from 'react-native';
-// @ts-ignore
-import realism from './src/common/assets/realizm.jpg'
+import { Provider } from 'react-redux'
 import {Main} from "./src/Main";
+import {store} from "./src/BLL/Store";
 
-export type CardType = {
-    id: string
-    title: string
-    cardItemPrice: string
-    grade: number
-    created: string
-    decKCover: ImageSourcePropType
-}
+
 
 export default function App() {
     return (
+        <Provider store={store}>
         <Main/>
+        </Provider>
     );
 }
 
