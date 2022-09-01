@@ -15,5 +15,6 @@ export const commonStyles=StyleSheet.create({
         paddingHorizontal:10,
         fontSize:FONTSIZEPrimary,
         color:TEXTCOLOR,
+
     }
 })

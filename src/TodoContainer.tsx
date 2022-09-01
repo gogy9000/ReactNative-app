@@ -1,10 +1,11 @@
 import {FC, ReactElement, useState} from "react";
 import {Modal, Pressable, StyleSheet, View} from "react-native";
 import {commonBorderStyle} from "./common/Styles";
-import {FONTSIZEPrimary, FONTSIZESecondary, HEIGHT, MARGIN, PADDING, TEXTCOLOR, WIDTH} from "./common/Variables";
+import {HEIGHT, MARGIN, PADDING, WIDTH} from "./common/Variables";
 import {TodoItem} from "./BLL/TodoReducer";
 import {TaskType} from "./BLL/TaskReducer";
 import {Todo} from "./Todo";
+import React from "react";
 
 type TodoContainerProps = {
     todo: TodoItem
@@ -23,7 +24,7 @@ export const TodoContainer: FC<TodoContainerProps> = (props) => {
             setIsModalVisible(!isModalVisible)
         }}>
             <View style={[styles.todoContainer, commonBorderStyle(10)]}>
-                <Todo addTaskHandler={addTaskHandler} todo={props.todo}>
+                <Todo viewMod addTaskHandler={addTaskHandler} todo={props.todo}>
                     {props.children}
                 </Todo>
             </View>
