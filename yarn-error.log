@@ -1,8 +1,8 @@
 Arguments: 
-  C:\Program Files\nodejs\node.exe C:\Users\ферма1\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js add @redux/toolkit
+  C:\Program Files\nodejs\node.exe C:\Users\ферма1\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js add @types/react-native-debugger --dev
 
 PATH: 
-  C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\Git\cmd;C:\Program Files\nodejs\;C:\Users\ферма1\AppData\Local\Microsoft\WindowsApps;C:\Users\ферма1\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\ферма1\AppData\Roaming\npm;G:\react_native\lesson1\my-app\node_modules\.bin
+  C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\Git\cmd;C:\Program Files\nodejs\;C:\Users\ферма1\AppData\Local\Microsoft\WindowsApps;C:\Users\ферма1\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\ферма1\AppData\Roaming\npm
 
 Yarn version: 
   1.22.17
@@ -14,7 +14,7 @@ Platform:
   win32 x64
 
 Trace: 
-  Error: https://registry.yarnpkg.com/@redux%2ftoolkit: Not found
+  Error: https://registry.yarnpkg.com/@types%2freact-native-debugger: Not found
       at Request.params.callback [as _callback] (C:\Users\ферма1\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:67029:18)
       at Request.self.callback (C:\Users\ферма1\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:140883:22)
       at Request.emit (node:events:390:28)
@@ -35,16 +35,20 @@ npm manifest:
       "start": "expo start",
       "android": "expo start --android",
       "ios": "expo start --ios",
-      "web": "expo start --web"
+      "web": "expo start --web",
+      "debug": "open 'rndebugger://set-debugger-loc?host=localhost&port=8081'"
     },
     "dependencies": {
+      "@reduxjs/toolkit": "^1.8.5",
       "expo": "~46.0.8",
       "expo-status-bar": "~1.4.0",
       "react": "18.0.0",
       "react-dom": "18.0.0",
       "react-native": "0.69.4",
+      "react-native-debugger": "^1.1.0",
       "react-native-uuid": "^2.0.1",
-      "react-native-web": "~0.18.7"
+      "react-native-web": "~0.18.7",
+      "react-redux": "^8.0.2"
     },
     "devDependencies": {
       "@babel/core": "^7.12.9",
@@ -1073,7 +1077,7 @@ Lockfile:
       pirates "^4.0.5"
       source-map-support "^0.5.16"
   
-  "@babel/runtime@^7.0.0", "@babel/runtime@^7.14.0", "@babel/runtime@^7.18.6", "@babel/runtime@^7.8.4":
+  "@babel/runtime@^7.0.0", "@babel/runtime@^7.12.1", "@babel/runtime@^7.14.0", "@babel/runtime@^7.18.6", "@babel/runtime@^7.8.4", "@babel/runtime@^7.9.2":
     version "7.18.9"
     resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.18.9.tgz#b4fcfce55db3d2e5e080d2490f608a3b9f407f4a"
     integrity sha512-lkqXDcvlFT5rvEjiu6+QYO+1GXrEHRo2LOtS7E4GtX5ESIZOgepqsZBVIj6Pv+a6zqsya9VCgiK1KAK4BvJDAw==
@@ -1728,6 +1732,16 @@ Lockfile:
     resolved "https://registry.yarnpkg.com/@react-native/polyfills/-/polyfills-2.0.0.tgz#4c40b74655c83982c8cf47530ee7dc13d957b6aa"
     integrity sha512-K0aGNn1TjalKj+65D7ycc1//H9roAQ51GJVk5ZJQFb2teECGmzd86bYDC0aYdbRf7gtovescq4Zt6FR0tgXiHQ==
   
+  "@reduxjs/toolkit@^1.8.5":
+    version "1.8.5"
+    resolved "https://registry.yarnpkg.com/@reduxjs/toolkit/-/toolkit-1.8.5.tgz#c14bece03ee08be88467f22dc0ecf9cf875527cd"
+    integrity sha512-f4D5EXO7A7Xq35T0zRbWq5kJQyXzzscnHKmjnu2+37B3rwHU6mX9PYlbfXdnxcY6P/7zfmjhgan0Z+yuOfeBmA==
+    dependencies:
+      immer "^9.0.7"
+      redux "^4.1.2"
+      redux-thunk "^2.4.1"
+      reselect "^4.1.5"
+  
   "@segment/loosely-validate-event@^2.0.0":
     version "2.0.0"
     resolved "https://registry.yarnpkg.com/@segment/loosely-validate-event/-/loosely-validate-event-2.0.0.tgz#87dfc979e5b4e7b82c5f1d8b722dfd5d77644681"
@@ -1759,6 +1773,14 @@ Lockfile:
     integrity sha512-anKkLmZZ+xm4p8JWBf4hElkM4XR+EZeA2M9BAkkTldmcyDY4mbdIJnRghDJH3Ov5ooY7/UAoENtmdMSkaAd7Cw==
     dependencies:
       "@types/node" "*"
+  
+  "@types/hoist-non-react-statics@^3.3.1":
+    version "3.3.1"
+    resolved "https://registry.yarnpkg.com/@types/hoist-non-react-statics/-/hoist-non-react-statics-3.3.1.tgz#1124aafe5118cb591977aeb1ceaaed1070eb039f"
+    integrity sha512-iMIqiko6ooLrTh1joXodJK5X9xeEALT1kM5G3ZLhD3hszxBdIEd5C75U834D9mLcINgD4OyZf5uQXjkuYydWvA==
+    dependencies:
+      "@types/react" "*"
+      hoist-non-react-statics "^3.3.0"
   
   "@types/istanbul-lib-coverage@*", "@types/istanbul-lib-coverage@^2.0.0":
     version "2.0.4"
@@ -1809,6 +1831,11 @@ Lockfile:
     version "0.16.2"
     resolved "https://registry.yarnpkg.com/@types/scheduler/-/scheduler-0.16.2.tgz#1a62f89525723dde24ba1b01b092bf5df8ad4d39"
     integrity sha512-hppQEBDmlwhFAXKJX2KnWLYu5yMfi91yazPb2l+lbJiwW+wdo1gNeRA+3RgNSO39WYX2euey41KEwnqesU2Jew==
+  
+  "@types/use-sync-external-store@^0.0.3":
+    version "0.0.3"
+    resolved "https://registry.yarnpkg.com/@types/use-sync-external-store/-/use-sync-external-store-0.0.3.tgz#b6725d5f4af24ace33b36fafd295136e75509f43"
+    integrity sha512-EwmlvuaxPNej9+T4v5AuBPJa2x2UOJVdjCtDHgcDqitUeOtjnJKJ+apYjVcAoBEMjKW1VVFGZLUb5+qqa09XFA==
   
   "@types/yargs-parser@*":
     version "21.0.0"
@@ -3585,6 +3612,13 @@ Lockfile:
     dependencies:
       source-map "^0.7.3"
   
+  hoist-non-react-statics@^3.3.0, hoist-non-react-statics@^3.3.2:
+    version "3.3.2"
+    resolved "https://registry.yarnpkg.com/hoist-non-react-statics/-/hoist-non-react-statics-3.3.2.tgz#ece0acaf71d62c2969c2ec59feff42a4b1a85b45"
+    integrity sha512-/gGivxi8JPKWNm/W0jSmzcMPpfpPLc3dY/6GxhX2hQ9iGj3aDfklV4ET7NjKpSinLpJ5vafa9iiGIEZg10SfBw==
+    dependencies:
+      react-is "^16.7.0"
+  
   hosted-git-info@^3.0.2:
     version "3.0.8"
     resolved "https://registry.yarnpkg.com/hosted-git-info/-/hosted-git-info-3.0.8.tgz#6e35d4cc87af2c5f816e4cb9ce350ba87a3f370d"
@@ -3614,6 +3648,11 @@ Lockfile:
       statuses "2.0.1"
       toidentifier "1.0.1"
   
+  humps@^2.0.1:
+    version "2.0.1"
+    resolved "https://registry.yarnpkg.com/humps/-/humps-2.0.1.tgz#dd02ea6081bd0568dc5d073184463957ba9ef9aa"
+    integrity sha512-E0eIbrFWUhwfXJmsbdjRQFQPrl5pTEoKlz163j1mTqqUnU9PgR4AgB8AIITzuB3vLBdxZXyZ9TDIrwB2OASz4g==
+  
   hyphenate-style-name@^1.0.2:
     version "1.0.4"
     resolved "https://registry.yarnpkg.com/hyphenate-style-name/-/hyphenate-style-name-1.0.4.tgz#691879af8e220aea5750e8827db4ef62a54e361d"
@@ -3640,6 +3679,11 @@ Lockfile:
     version "0.6.3"
     resolved "https://registry.yarnpkg.com/image-size/-/image-size-0.6.3.tgz#e7e5c65bb534bd7cdcedd6cb5166272a85f75fb2"
     integrity sha512-47xSUiQioGaB96nqtp5/q55m0aBQSQdyIloMOc/x+QVTDZLNmXE892IIDrJ0hM1A5vcNUDD5tDffkSP5lCaIIA==
+  
+  immer@^9.0.7:
+    version "9.0.15"
+    resolved "https://registry.yarnpkg.com/immer/-/immer-9.0.15.tgz#0b9169e5b1d22137aba7d43f8a81a495dd1b62dc"
+    integrity sha512-2eB/sswms9AEUSkOm4SbV5Y7Vmt/bKRwByd52jfLkW4OLYeaTP3EEiJ9agqU0O/tq6Dk62Zfj+TJSqfm1rLVGQ==
   
   import-fresh@^2.0.0:
     version "2.0.0"
@@ -4244,7 +4288,7 @@ Lockfile:
     resolved "https://registry.yarnpkg.com/lodash.throttle/-/lodash.throttle-4.1.1.tgz#c23e91b710242ac70c37f1e1cda9274cc39bf2f4"
     integrity sha512-wIkUCfVKpVsWo3JSZlc+8MB5it+2AN5W8J7YVMST30UrvcQNZ1Okbj+rbVniijTWE6FGYy4XJq/rHkas8qJMLQ==
   
-  lodash@^4.17.13, lodash@^4.17.15, lodash@^4.17.4:
+  lodash@^4.17.13, lodash@^4.17.15, lodash@^4.17.4, lodash@^4.17.5:
     version "4.17.21"
     resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.21.tgz#679591c564c3bffaae8454cf0b3df370c3d6911c"
     integrity sha512-v2kDEe57lecTulaDIuNTPy3Ry4gLGJ6Z1O3vE1krgXZNrsQ+LFTGHVxVjcXPs17LhbZVGedAJv8XZ1tvj5FvSg==
@@ -5351,10 +5395,15 @@ Lockfile:
       loose-envify "^1.1.0"
       scheduler "^0.21.0"
   
-  "react-is@^16.12.0 || ^17.0.0 || ^18.0.0":
+  "react-is@^16.12.0 || ^17.0.0 || ^18.0.0", react-is@^18.0.0:
     version "18.2.0"
     resolved "https://registry.yarnpkg.com/react-is/-/react-is-18.2.0.tgz#199431eeaaa2e09f86427efbb4f1473edb47609b"
     integrity sha512-xWGDIW6x921xtzPkhiULtthJHoJvBbF3q26fzloPCK0hsvxtPVelvftw3zjbHWSkR2km9Z+4uxbDDK/6Zw9B8w==
+  
+  react-is@^16.7.0:
+    version "16.13.1"
+    resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.13.1.tgz#789729a4dc36de2999dc156dd6c1d9c18cea56a4"
+    integrity sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==
   
   react-is@^17.0.1:
     version "17.0.2"
@@ -5370,6 +5419,21 @@ Lockfile:
       flow-parser "^0.121.0"
       jscodeshift "^0.13.1"
       nullthrows "^1.1.1"
+  
+  react-native-debugger@^1.1.0:
+    version "1.1.0"
+    resolved "https://registry.yarnpkg.com/react-native-debugger/-/react-native-debugger-1.1.0.tgz#88ae36c229a7da6c8e97e0e98e366eca55d4736a"
+    integrity sha512-ckFI3QztvmLUVE/TCA++V5apVWrsARejSXqSFdTtiKmTNOsHhF+KjiVzwBYk1TegiSCjDU0LHO4m5b+HjN0Ncg==
+    dependencies:
+      humps "^2.0.1"
+      lodash "^4.17.5"
+      react-native-device-info "^0.10.2"
+      redux-create-reducer "^1.1.1"
+  
+  react-native-device-info@^0.10.2:
+    version "0.10.2"
+    resolved "https://registry.yarnpkg.com/react-native-device-info/-/react-native-device-info-0.10.2.tgz#350cd68ed43839022ddea0a3a423439f16fa4fba"
+    integrity sha512-TgIlL29+ltNQhArNidtsBXC/ae4wgutSp7YUyqwuZC4Jmn2M9R0K4lgdw+hUMhJ5e9z5fBo6ylkybHWbYHYOXA==
   
   react-native-gradle-plugin@^0.0.7:
     version "0.0.7"
@@ -5433,6 +5497,18 @@ Lockfile:
       whatwg-fetch "^3.0.0"
       ws "^6.1.4"
   
+  react-redux@^8.0.2:
+    version "8.0.2"
+    resolved "https://registry.yarnpkg.com/react-redux/-/react-redux-8.0.2.tgz#bc2a304bb21e79c6808e3e47c50fe1caf62f7aad"
+    integrity sha512-nBwiscMw3NoP59NFCXFf02f8xdo+vSHT/uZ1ldDwF7XaTpzm+Phk97VT4urYBl5TYAPNVaFm12UHAEyzkpNzRA==
+    dependencies:
+      "@babel/runtime" "^7.12.1"
+      "@types/hoist-non-react-statics" "^3.3.1"
+      "@types/use-sync-external-store" "^0.0.3"
+      hoist-non-react-statics "^3.3.2"
+      react-is "^18.0.0"
+      use-sync-external-store "^1.0.0"
+  
   react-refresh@^0.4.0:
     version "0.4.3"
     resolved "https://registry.yarnpkg.com/react-refresh/-/react-refresh-0.4.3.tgz#966f1750c191672e76e16c2efa569150cc73ab53"
@@ -5489,6 +5565,23 @@ Lockfile:
       esprima "~4.0.0"
       source-map "~0.6.1"
       tslib "^2.0.1"
+  
+  redux-create-reducer@^1.1.1:
+    version "1.2.0"
+    resolved "https://registry.yarnpkg.com/redux-create-reducer/-/redux-create-reducer-1.2.0.tgz#accdd7f36509b202c7602f14c0fb827a4d1c3dde"
+    integrity sha512-H+bi4NCgw253xVVGHRnQQyWVkl2v0MDUiWRzFrSexcSgZ84JOa9Phsso1IRKKkrqGvBqQn2+oLZYdB3/qG99FQ==
+  
+  redux-thunk@^2.4.1:
+    version "2.4.1"
+    resolved "https://registry.yarnpkg.com/redux-thunk/-/redux-thunk-2.4.1.tgz#0dd8042cf47868f4b29699941de03c9301a75714"
+    integrity sha512-OOYGNY5Jy2TWvTL1KgAlVy6dcx3siPJ1wTq741EPyUKfn6W6nChdICjZwCd0p8AZBs5kWpZlbkXW2nE/zjUa+Q==
+  
+  redux@^4.1.2:
+    version "4.2.0"
+    resolved "https://registry.yarnpkg.com/redux/-/redux-4.2.0.tgz#46f10d6e29b6666df758780437651eeb2b969f13"
+    integrity sha512-oSBmcKKIuIR4ME29/AeNUnl5L+hvBq7OaJWzaptTQJAntaPvxIJqfnjbaEiCzzaIz+XmVILfqAM3Ob0aXLPfjA==
+    dependencies:
+      "@babel/runtime" "^7.9.2"
   
   regenerate-unicode-properties@^10.0.1:
     version "10.0.1"
@@ -5590,7 +5683,7 @@ Lockfile:
     resolved "https://registry.yarnpkg.com/requires-port/-/requires-port-1.0.0.tgz#925d2601d39ac485e091cf0da5c6e694dc3dcaff"
     integrity sha512-KigOCHcocU3XODJxsu8i/j8T9tzT4adHiecwORRQ0ZZFcp7ahwXuRU1m+yuO90C5ZUyGeGfocHDI14M3L3yDAQ==
   
-  reselect@^4.0.0:
+  reselect@^4.0.0, reselect@^4.1.5:
     version "4.1.6"
     resolved "https://registry.yarnpkg.com/reselect/-/reselect-4.1.6.tgz#19ca2d3d0b35373a74dc1c98692cdaffb6602656"
     integrity sha512-ZovIuXqto7elwnxyXbBtCPo9YFEr3uJqj2rRbcOOog1bmu2Ag85M4hixSwFWyaBMKXNgvPaJ9OSu9SkBPIeJHQ==

@@ -6,7 +6,7 @@ export const store=configureStore({
     reducer:{
         todoListState:todoSlice.reducer,
         tasksState:taskSlice.reducer
-    }
+    },
 })
 
 export type RootState=ReturnType<typeof store.getState>
