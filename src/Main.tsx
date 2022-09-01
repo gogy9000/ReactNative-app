@@ -6,7 +6,7 @@ import {Footer} from "./Footer";
 import {EmptyContent} from "./EmptyContent";
 import {TodoContainer} from "./TodoContainer";
 import {AppBar} from "./AppBar";
-import {HEIGHT, WIDTH} from "./common/Variables";
+import {HEIGHT, PADDING, WIDTH} from "./common/Variables";
 import uuid from 'react-native-uuid'
 import {TodoItem, todoSlice} from "./BLL/TodoReducer";
 import {taskSlice, TaskType} from "./BLL/TaskReducer";
@@ -26,7 +26,6 @@ export const Main = () => {
     }
 
     const render: ListRenderItem<TodoItem> = ({item}) => {
-
         return (
             <TodoContainer addTaskHandler={addTaskHandler} todo={item}>
                 <>
@@ -50,13 +49,14 @@ export const Main = () => {
 
         <ImageBackground style={styles.imageBackground} source={realism} resizeMode={"cover"}>
             <FlatList
+
                 columnWrapperStyle={styles.columnWrapperStyle}
                 data={todoList}
                 extraData={tasks}
                 renderItem={render}
                 numColumns={2}
                 ListHeaderComponent={<Header createTodoHandler={createTodoHandler}/>}
-                ListFooterComponent={<Footer/>}
+                // ListFooterComponent={<Footer/>}
                 ListEmptyComponent={<EmptyContent/>}
             />
             <AppBar/>
@@ -72,7 +72,10 @@ const styles = StyleSheet.create({
         height: HEIGHT,
     },
     columnWrapperStyle: {
-        justifyContent: "space-around"
+        justifyContent: "space-around",
+        // height: ((HEIGHT-PADDING*2)*0.79),
+
+
     },
 });
 

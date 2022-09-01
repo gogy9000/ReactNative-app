@@ -12,7 +12,7 @@ export const taskSlice=createSlice({
     initialState,
     reducers:{
         addTask:(state,action:PayloadAction<TaskType>)=>{
-            if(Object.keys(state.tasksList).length===0){
+            if(Object.keys(state.tasksList).length===0||!state.tasksList.hasOwnProperty(action.payload.todoId)){
                 state.tasksList[action.payload.todoId]=[]
             }
             state.tasksList[action.payload.todoId].push(action.payload)

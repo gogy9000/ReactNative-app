@@ -2,7 +2,7 @@ import {StyleSheet, TextInput, View, StatusBar} from "react-native";
 import {BACKGROUNDCOLOR, FONTSIZEPrimary, HEIGHT, PADDING, TEXTCOLOR, WIDTH} from "./common/Variables";
 import {FC, memo, useState} from "react";
 import {CustomButton} from "./common/CustomButton";
-import {commonBorderStyle} from "./common/Styles";
+import {commonBorderStyle, commonStyles} from "./common/Styles";
 
 
 type HeaderProps={
@@ -20,7 +20,7 @@ export const Header:FC<HeaderProps> = memo( ({createTodoHandler}) => {
     return (
         <View style={styles.container}>
             <TextInput
-                style={[styles.searchOrCreateInput, commonBorderStyle()]}
+                style={[commonStyles.modalInputStyle, commonBorderStyle()]}
                 onChangeText={onTextInput}
                 value={inputValue}
                 placeholderTextColor={TEXTCOLOR}
@@ -50,7 +50,7 @@ const styles=StyleSheet.create({
         height: (HEIGHT - PADDING * 2) / 19,
          width: (WIDTH - PADDING * 2) / 2,
     },
-    searchOrCreateInput:{
+    modalInputStyle:{
         height:(HEIGHT-PADDING*2)/19,
         width:(WIDTH-PADDING*2)/2,
         paddingHorizontal:10,

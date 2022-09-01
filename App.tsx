@@ -33,7 +33,7 @@ export default function App() {
 }
 {/*<TextInput*/
 }
-{/*    style={stylesTodo.input}*/
+{/*    style={styles.input}*/
 }
 {/*    onChangeText={() => {*/
 }
@@ -49,13 +49,13 @@ export default function App() {
 }
 {/*</TouchableOpacity>*/
 }
-{/*<Pressable style={stylesTodo.pressable}>*/
+{/*<Pressable style={styles.pressable}>*/
 }
 {/*    <Text style={{color: "white"}}>azza</Text>*/
 }
 {/*</Pressable>*/
 }
-{/*<Pressable style={[stylesTodo.pressable,{backgroundColor: "orange"},{borderWidth: 5}]*/
+{/*<Pressable style={[styles.pressable,{backgroundColor: "orange"},{borderWidth: 5}]*/
 }
 {/*}>*/
 }
