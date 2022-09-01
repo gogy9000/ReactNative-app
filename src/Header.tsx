@@ -3,6 +3,8 @@ import {BACKGROUNDCOLOR, FONTSIZEPrimary, HEIGHT, PADDING, TEXTCOLOR, WIDTH} fro
 import {FC, memo, useState} from "react";
 import {CustomButton} from "./common/CustomButton";
 import {commonBorderStyle, commonStyles} from "./common/Styles";
+import {StyledInput} from "./styled-components/StyledInput";
+import React from "react";
 
 
 type HeaderProps={
@@ -19,8 +21,8 @@ export const Header:FC<HeaderProps> = memo( ({createTodoHandler}) => {
     }
     return (
         <View style={styles.container}>
-            <TextInput
-                style={[commonStyles.modalInputStyle, commonBorderStyle()]}
+            <StyledInput
+                style={[commonStyles.modalInputStyle]}
                 onChangeText={onTextInput}
                 value={inputValue}
                 placeholderTextColor={TEXTCOLOR}
@@ -53,8 +55,5 @@ const styles=StyleSheet.create({
     modalInputStyle:{
         height:(HEIGHT-PADDING*2)/19,
         width:(WIDTH-PADDING*2)/2,
-        paddingHorizontal:10,
-        fontSize:FONTSIZEPrimary,
-        color:TEXTCOLOR,
     }
 })

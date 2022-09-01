@@ -6,12 +6,13 @@ import {Footer} from "./Footer";
 import {EmptyContent} from "./EmptyContent";
 import {TodoContainer} from "./TodoContainer";
 import {AppBar} from "./AppBar";
-import {HEIGHT, PADDING, WIDTH} from "./common/Variables";
+import {HEIGHT, WIDTH} from "./common/Variables";
 import uuid from 'react-native-uuid'
 import {TodoItem, todoSlice} from "./BLL/TodoReducer";
 import {taskSlice, TaskType} from "./BLL/TaskReducer";
 import {useDispatch, useSelector} from "react-redux";
 import {RootState} from "./BLL/Store";
+import React from "react";
 
 StatusBar.setBarStyle("light-content")
 export const Main = () => {
@@ -32,14 +33,14 @@ export const Main = () => {
                     {tasks[item.id]?.map((task) => <Text key={task.taskId}>{task.taskTitle}</Text>)}
                 </>
             </TodoContainer>
-
         )
     }
 
     const createTodoHandler = (newTodoTitle: string) => {
+        const todoTitle=!!newTodoTitle?newTodoTitle:"new todo"
         const newId = uuid.v1().toString()
         dispatch(todoSlice.actions.createTodoList(
-                {decKCover: realism, status: 0, title: newTodoTitle, id: newId}
+                {decKCover: realism, status: 0, title: todoTitle, id: newId}
             )
         )
     }
@@ -53,6 +54,7 @@ export const Main = () => {
                 columnWrapperStyle={styles.columnWrapperStyle}
                 data={todoList}
                 extraData={tasks}
+                // keyExtractor={(item)=>item.id}
                 renderItem={render}
                 numColumns={2}
                 ListHeaderComponent={<Header createTodoHandler={createTodoHandler}/>}
