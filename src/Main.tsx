@@ -1,8 +1,7 @@
-import {FlatList, ImageBackground, ListRenderItem, StatusBar, StyleSheet, Text,} from 'react-native';
+import {FlatList, ImageBackground, ListRenderItem, StatusBar, StyleSheet,} from 'react-native';
 // @ts-ignore
 import realism from "./common/assets/realizm.jpg"
 import {Header} from "./Header";
-import {Footer} from "./Footer";
 import {EmptyContent} from "./EmptyContent";
 import {TodoContainer} from "./TodoContainer";
 import {AppBar} from "./AppBar";
@@ -13,6 +12,7 @@ import {taskSlice, TaskType} from "./BLL/TaskReducer";
 import {useDispatch, useSelector} from "react-redux";
 import {RootState} from "./BLL/Store";
 import React from "react";
+import {Tasks} from "./Tasks";
 
 StatusBar.setBarStyle("light-content")
 export const Main = () => {
@@ -29,9 +29,7 @@ export const Main = () => {
     const render: ListRenderItem<TodoItem> = ({item}) => {
         return (
             <TodoContainer addTaskHandler={addTaskHandler} todo={item}>
-                <>
-                    {tasks[item.id]?.map((task) => <Text key={task.taskId}>{task.taskTitle}</Text>)}
-                </>
+                    <Tasks tasks={tasks[item.id]}/>
             </TodoContainer>
         )
     }
@@ -75,9 +73,6 @@ const styles = StyleSheet.create({
     },
     columnWrapperStyle: {
         justifyContent: "space-around",
-        // height: ((HEIGHT-PADDING*2)*0.79),
-
-
     },
 });
 

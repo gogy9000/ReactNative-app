@@ -16,7 +16,6 @@ type TodoContainerProps = {
 
 export const TodoContainer: FC<TodoContainerProps> = (props) => {
     const {addTaskHandler}=props
-
     const [isModalVisible, setIsModalVisible]=useState(false)
 
     return (

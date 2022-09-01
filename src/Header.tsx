@@ -2,7 +2,7 @@ import {StyleSheet, TextInput, View, StatusBar} from "react-native";
 import {BACKGROUNDCOLOR, FONTSIZEPrimary, HEIGHT, PADDING, TEXTCOLOR, WIDTH} from "./common/Variables";
 import {FC, memo, useState} from "react";
 import {CustomButton} from "./common/CustomButton";
-import {commonBorderStyle, commonStyles} from "./common/Styles";
+import {commonStyles} from "./common/Styles";
 import {StyledInput} from "./styled-components/StyledInput";
 import React from "react";
 
