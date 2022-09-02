@@ -28,8 +28,8 @@ export const Main = () => {
 
     const render: ListRenderItem<TodoItem> = ({item}) => {
         return (
-            <TodoContainer addTaskHandler={addTaskHandler} todo={item}>
-                    <Tasks tasks={tasks[item.id]}/>
+            <TodoContainer addTaskHandler={addTaskHandler} tasks={tasks[item.id]} todo={item} >
+                    <Tasks todo={item} tasks={tasks[item.id]}/>
             </TodoContainer>
         )
     }
@@ -52,7 +52,7 @@ export const Main = () => {
                 columnWrapperStyle={styles.columnWrapperStyle}
                 data={todoList}
                 extraData={tasks}
-                // keyExtractor={(item)=>item.id}
+                keyExtractor={(item)=>item.id}
                 renderItem={render}
                 numColumns={2}
                 ListHeaderComponent={<Header createTodoHandler={createTodoHandler}/>}

@@ -1,7 +1,7 @@
-import {FC, ReactElement, useState} from "react";
-import {Modal, Pressable, StyleSheet, View} from "react-native";
+import {FC, memo, ReactElement, useMemo, useState} from "react";
+import {Modal, Pressable, StyleSheet, Text, View} from "react-native";
 import {commonBorderStyle} from "./common/Styles";
-import {HEIGHT, MARGIN, PADDING, WIDTH} from "./common/Variables";
+import {HEIGHT, MARGIN, PADDING, TEXTCOLOR, WIDTH} from "./common/Variables";
 import {TodoItem} from "./BLL/TodoReducer";
 import {TaskType} from "./BLL/TaskReducer";
 import {Todo} from "./Todo";
@@ -9,14 +9,20 @@ import React from "react";
 
 type TodoContainerProps = {
     todo: TodoItem
+    tasks:TaskType[]
     children?: ReactElement
     onPressHandler?: () => void
     addTaskHandler:(task:TaskType)=>void
 }
 
-export const TodoContainer: FC<TodoContainerProps> = (props) => {
+export const TodoContainer: FC<TodoContainerProps>  = memo( (props) => {
     const {addTaskHandler}=props
     const [isModalVisible, setIsModalVisible]=useState(false)
+
+    const mappedTask=useMemo(()=>
+        props.tasks?.map((task)=>
+            <Text style={[{color:TEXTCOLOR},task.taskStatus==="completed"&&styles.checkedTask]}>{task.taskTitle}</Text>
+        ),[props.tasks])
 
     return (
         <Pressable onPress={() => {
@@ -24,7 +30,7 @@ export const TodoContainer: FC<TodoContainerProps> = (props) => {
         }}>
             <View style={[styles.todoContainer, commonBorderStyle(10)]}>
                 <Todo viewMod addTaskHandler={addTaskHandler} todo={props.todo}>
-                    {props.children}
+                    <>{mappedTask}</>
                 </Todo>
             </View>
 
@@ -42,7 +48,7 @@ export const TodoContainer: FC<TodoContainerProps> = (props) => {
             </Modal>
         </Pressable>
     )
-}
+})
 
 export const styles = StyleSheet.create({
     modal:{
@@ -60,5 +66,9 @@ export const styles = StyleSheet.create({
         marginVertical: MARGIN / 2,
         marginHorizontal: MARGIN / 2,
     },
+    checkedTask:{
+        textDecorationLine:"line-through",
+        color: "rgba(5,5,5,0.7)"
+    }
 
 })

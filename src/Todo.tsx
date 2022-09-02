@@ -25,9 +25,13 @@ export const Todo: FC<TaskProps> = (props) => {
     }
 
     const onAddTask = () => {
-        const newTaskId = uuid.v1().toString()
-        addTaskHandler({taskTitle: "azaza", taskId: newTaskId, taskStatus: "0", todoId: todo.id})
+        if(!!todoTitle.trim()) {
+            const newTaskId = uuid.v1().toString()
+            addTaskHandler({taskTitle: todoTitle, taskId: newTaskId, taskStatus: "0", todoId: todo.id})
+            setTodoTitle("")
+        }
     }
+
     return (
         <ImageBackground
             style={styles.deckCover}
@@ -46,8 +50,6 @@ export const Todo: FC<TaskProps> = (props) => {
                 />
                 <CustomButton onPress={onAddTask}>add task</CustomButton>
             </View>}
-
-
             {children || null}
         </ImageBackground>
     )
@@ -58,7 +60,8 @@ const styles=StyleSheet.create({
         flex: 1,
         justifyContent: "flex-start",
         paddingHorizontal: PADDING / 3,
-        paddingVertical: PADDING / 3
+        paddingVertical: PADDING / 3,
+
     },
     title: {
         fontSize: FONTSIZEPrimary,
@@ -67,7 +70,8 @@ const styles=StyleSheet.create({
     },
     inputAndButtonBox:{
         flexDirection:"row",
-        justifyContent:"space-between"
+        justifyContent:"space-between",
+        marginVertical:PADDING / 3
     },
     input:{
         width:(WIDTH-PADDING*2)*0.6

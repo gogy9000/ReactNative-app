@@ -18,10 +18,13 @@ export const taskSlice=createSlice({
             state.tasksList[action.payload.todoId].push(action.payload)
         },
         updateTask:(state,action:PayloadAction<TaskType>)=>{
-            state.tasksList[action.payload.todoId].map((task)=>task.taskId===action.payload.taskId?action.payload:task)
+            console.log(action.payload)
+            state.tasksList[action.payload.todoId]=state.tasksList[action.payload.todoId]
+                .map((task)=>task.taskId===action.payload.taskId?action.payload:task)
         },
         deleteTask:(state,action:PayloadAction<TaskType>)=>{
-            state.tasksList[action.payload.todoId].filter(task=>task.taskId!==action.payload.taskId)
+            state.tasksList[action.payload.todoId]= state.tasksList[action.payload.todoId]
+                .filter(task=>task.taskId!==action.payload.taskId)
         }
     }
 })
