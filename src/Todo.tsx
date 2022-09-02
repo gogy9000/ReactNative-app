@@ -1,13 +1,17 @@
 import {TodoItem} from "./BLL/TodoReducer";
-import {FC, ReactElement, useState} from "react";
+import {FC, memo, ReactElement, useState} from "react";
 import {TaskType} from "./BLL/TaskReducer";
 import uuid from "react-native-uuid";
-import {ImageBackground, Text, StyleSheet, TextInput, View} from "react-native";
+import {ImageBackground, Text, StyleSheet, TextInput, View, FlatList, ListRenderItem} from "react-native";
 import {CustomButton} from "./common/CustomButton";
 import {FONTSIZEPrimary, PADDING, TEXTCOLOR, WIDTH} from "./common/Variables";
 import {commonBorderStyle, commonStyles} from "./common/Styles";
 import React from "react";
 import {StyledInput} from "./styled-components/StyledInput";
+import {Header} from "./Header";
+import {EmptyContent} from "./EmptyContent";
+import {TodoContainer} from "./TodoContainer";
+import {Tasks} from "./Tasks";
 
 
 type TaskProps = {
@@ -16,7 +20,7 @@ type TaskProps = {
     children?: ReactElement
     addTaskHandler: (task: TaskType) => void
 }
-export const Todo: FC<TaskProps> = (props) => {
+export const Todo: FC<TaskProps> = memo((props) => {
     const {children, addTaskHandler, todo,viewMod} = props
     const [todoTitle,setTodoTitle]=useState("")
 
@@ -25,11 +29,11 @@ export const Todo: FC<TaskProps> = (props) => {
     }
 
     const onAddTask = () => {
-        if(!!todoTitle.trim()) {
+        // if(!!todoTitle.trim()) {
             const newTaskId = uuid.v1().toString()
-            addTaskHandler({taskTitle: todoTitle, taskId: newTaskId, taskStatus: "0", todoId: todo.id})
+            addTaskHandler({taskTitle: todoTitle||"azaza", taskId: newTaskId, taskStatus: "0", todoId: todo.id})
             setTodoTitle("")
-        }
+        // }
     }
 
     return (
@@ -38,6 +42,7 @@ export const Todo: FC<TaskProps> = (props) => {
             source={todo.decKCover}
             borderRadius={10}
             resizeMode={"cover"}>
+
             <Text style={styles.title}>{todo.title}</Text>
             {!viewMod&&<View style={[styles.inputAndButtonBox]}>
                 <StyledInput
@@ -54,7 +59,8 @@ export const Todo: FC<TaskProps> = (props) => {
         </ImageBackground>
     )
 
-}
+})
+
 const styles=StyleSheet.create({
     deckCover: {
         flex: 1,

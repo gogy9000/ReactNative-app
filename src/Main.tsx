@@ -48,7 +48,6 @@ export const Main = () => {
 
         <ImageBackground style={styles.imageBackground} source={realism} resizeMode={"cover"}>
             <FlatList
-
                 columnWrapperStyle={styles.columnWrapperStyle}
                 data={todoList}
                 extraData={tasks}

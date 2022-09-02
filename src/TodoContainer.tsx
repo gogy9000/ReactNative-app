@@ -1,11 +1,12 @@
 import {FC, memo, ReactElement, useMemo, useState} from "react";
-import {Modal, Pressable, StyleSheet, Text, View} from "react-native";
+import {FlatList, ListRenderItem, Modal, Pressable, StyleSheet, Text, View} from "react-native";
 import {commonBorderStyle} from "./common/Styles";
 import {HEIGHT, MARGIN, PADDING, TEXTCOLOR, WIDTH} from "./common/Variables";
 import {TodoItem} from "./BLL/TodoReducer";
 import {TaskType} from "./BLL/TaskReducer";
 import {Todo} from "./Todo";
 import React from "react";
+import {EmptyContent} from "./EmptyContent";
 
 type TodoContainerProps = {
     todo: TodoItem
@@ -16,7 +17,7 @@ type TodoContainerProps = {
 }
 
 export const TodoContainer: FC<TodoContainerProps>  = memo( (props) => {
-    const {addTaskHandler}=props
+    const {addTaskHandler,todo}=props
     const [isModalVisible, setIsModalVisible]=useState(false)
 
     const mappedTask=useMemo(()=>
@@ -24,13 +25,27 @@ export const TodoContainer: FC<TodoContainerProps>  = memo( (props) => {
             <Text style={[{color:TEXTCOLOR},task.taskStatus==="completed"&&styles.checkedTask]}>{task.taskTitle}</Text>
         ),[props.tasks])
 
+    const render: ListRenderItem<TaskType> = ({item}) => {
+
+        return (
+            <Text style={[{color:TEXTCOLOR},item.taskStatus==="completed"&&styles.checkedTask]}>{item.taskTitle}</Text>
+        )
+    }
     return (
-        <Pressable onPress={() => {
+        <Pressable onLongPress={() => {
             setIsModalVisible(!isModalVisible)
         }}>
             <View style={[styles.todoContainer, commonBorderStyle(10)]}>
                 <Todo viewMod addTaskHandler={addTaskHandler} todo={props.todo}>
-                    <>{mappedTask}</>
+                    <FlatList
+                        // columnWrapperStyle={{}}
+                        data={props.tasks}
+                        extraData={props.tasks}
+                        keyExtractor={(item)=>item.taskId}
+                        renderItem={render}
+                        listKey={todo.id}
+                        // numColumns={2}
+                    />
                 </Todo>
             </View>
 
