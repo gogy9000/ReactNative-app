@@ -1,5 +1,5 @@
 import {Text, View,StyleSheet} from "react-native";
-import {FONTSIZEPrimary, HEIGHT, PADDING, WIDTH} from "./common/Variables";
+import {FONTSIZEPrimary, HEIGHT, PADDING, WIDTH} from "../../common/Variables";
 
 export const Footer = () => {
     return (

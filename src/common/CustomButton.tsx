@@ -2,7 +2,7 @@ import {ColorValue, GestureResponderEvent, StyleSheet, Text, TouchableHighlight,
 import {FC, memo, ReactElement} from "react";
 import {BACKGROUNDCOLOR, FONTSIZEPrimary, PADDING, TEXTCOLOR, WIDTH} from "./Variables";
 import {commonBorderStyle} from "./Styles";
-
+import React from "react";
 type CustomButtonPropsType = {
     onPress?: (event: GestureResponderEvent) => void
     title?: string

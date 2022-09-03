@@ -1,9 +1,9 @@
 import {FC, memo, ReactElement, useMemo, useState} from "react";
 import {FlatList, ListRenderItem, Modal, Pressable, StyleSheet, Text, View} from "react-native";
-import {commonBorderStyle} from "./common/Styles";
-import {HEIGHT, MARGIN, PADDING, TEXTCOLOR, WIDTH} from "./common/Variables";
-import {TodoItem} from "./BLL/TodoReducer";
-import {TaskType} from "./BLL/TaskReducer";
+import {commonBorderStyle} from "../../common/Styles";
+import {HEIGHT, MARGIN, PADDING, TEXTCOLOR, WIDTH} from "../../common/Variables";
+import {TodoItem} from "../../BLL/TodoReducer";
+import {TaskType} from "../../BLL/TaskReducer";
 import {Todo} from "./Todo";
 import React from "react";
 import {EmptyContent} from "./EmptyContent";

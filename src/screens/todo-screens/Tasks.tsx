@@ -1,7 +1,7 @@
-import {TaskType} from "./BLL/TaskReducer";
+import {TaskType} from "../../BLL/TaskReducer";
 import React, {memo, useMemo} from "react";
 import {Task} from "./Task";
-import {TodoItem} from "./BLL/TodoReducer";
+import {TodoItem} from "../../BLL/TodoReducer";
 
 type TasksProps = {
     tasks: TaskType[]

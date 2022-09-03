@@ -1,7 +1,7 @@
 import {View, StyleSheet, Text} from "react-native";
-import {BACKGROUNDCOLOR, HEIGHT, TEXTCOLOR, WIDTH} from "./common/Variables";
-import {CustomButton} from "./common/CustomButton";
-
+import {BACKGROUNDCOLOR, HEIGHT, TEXTCOLOR, WIDTH} from "../../common/Variables";
+import {CustomButton} from "../../common/CustomButton";
+import React from "react";
 export const AppBar = () => {
   return(
       <View style={styles.container}>

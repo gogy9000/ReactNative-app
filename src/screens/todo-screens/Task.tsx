@@ -1,10 +1,10 @@
 import React, {memo, useState} from "react";
 import {Text, View, StyleSheet, Modal, ImageBackground, Pressable} from "react-native";
-import {taskSlice, TaskType} from "./BLL/TaskReducer";
-import {commonBorderStyle} from "./common/Styles";
-import {CustomButton} from "./common/CustomButton";
-import {BACKGROUNDCOLOR, FONTSIZEPrimary, HEIGHT, MARGIN, PADDING, TEXTCOLOR, WIDTH} from "./common/Variables";
-import {TodoItem} from "./BLL/TodoReducer";
+import {taskSlice, TaskType} from "../../BLL/TaskReducer";
+import {commonBorderStyle} from "../../common/Styles";
+import {CustomButton} from "../../common/CustomButton";
+import {BACKGROUNDCOLOR, FONTSIZEPrimary, HEIGHT, MARGIN, PADDING, TEXTCOLOR, WIDTH} from "../../common/Variables";
+import {TodoItem} from "../../BLL/TodoReducer";
 import {useDispatch} from "react-redux";
 
 type TaskProps = {
