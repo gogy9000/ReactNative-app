@@ -29,11 +29,9 @@ export const Todo: FC<TaskProps> = memo((props) => {
     }
 
     const onAddTask = () => {
-        // if(!!todoTitle.trim()) {
             const newTaskId = uuid.v1().toString()
             addTaskHandler({taskTitle: todoTitle||"azaza", taskId: newTaskId, taskStatus: "0", todoId: todo.id})
             setTodoTitle("")
-        // }
     }
 
     return (

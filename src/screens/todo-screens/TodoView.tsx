@@ -1,4 +1,4 @@
-import {FlatList, ListRenderItem, Pressable, StyleSheet, TouchableOpacity, View,} from 'react-native';
+import {FlatList, ListRenderItem, Pressable, StyleSheet,} from 'react-native';
 // @ts-ignore
 import realism from "../../common/assets/realizm.jpg"
 import {Header} from "./Header";
@@ -8,15 +8,14 @@ import {HEIGHT, WIDTH} from "../../common/Variables";
 import uuid from 'react-native-uuid'
 import {TodoItem, todoSlice} from "../../BLL/TodoReducer";
 import {taskSlice, TaskType} from "../../BLL/TaskReducer";
-import {useDispatch, useSelector} from "react-redux";
+import {useDispatch} from "react-redux";
 import React from "react";
 import {Tasks} from "./Tasks";
-import {BottomTabBarHeightContext} from "@react-navigation/bottom-tabs";
-import {createStackNavigator} from "@react-navigation/stack";
-import {ParamPropsTypes, TodoStackParamList, useAppNavigation} from "../types/types";
+import {TasksPropsType, TasksStackParamList, useAppNavigation} from "../types/types";
 import {Todo} from "./Todo";
-import {useAppSelector} from "../../CustomHooks/CustomHooks";
-
+import {useAppDispatch, useAppSelector} from "../../CustomHooks/CustomHooks";
+import {createStackNavigator} from "@react-navigation/stack";
+import {TaskEntity} from "./TaskEntity";
 
 
 export const TodoView = () => {
@@ -30,7 +29,6 @@ export const TodoView = () => {
         dispatch(taskSlice.actions.addTask(task))
     }
 
-
     const createTodoHandler = (newTodoTitle: string) => {
         const todoTitle=!!newTodoTitle?newTodoTitle:"new todo"
         const newId = uuid.v1().toString()
@@ -41,22 +39,20 @@ export const TodoView = () => {
     }
 
     const render: ListRenderItem<TodoItem> = ({item}) => {
+        const onNavigate = () => {
+            navigation.navigate("TodoScreen",{screen:"Todo",params:{screen:"TaskList",params:{todo:item}}})
+        }
         return (
-            <TouchableOpacity onPress={()=>{
-                console.log(item.id)
-                navigation.navigate("TodoScreen",{screen:"Todo",params:{todoId:item.id}})
-            }}>
+            <Pressable onPress={onNavigate}>
             <TodoContainer addTaskHandler={addTaskHandler} tasks={tasks[item.id]} todo={item} >
                 <Tasks todo={item} tasks={tasks[item.id]}/>
             </TodoContainer>
-            </TouchableOpacity>
+            </Pressable>
         )
     }
 
 
     return (
-
-        // <ImageBackground style={styles.imageBackground} source={realism} resizeMode={"cover"}>
             <FlatList
                 columnWrapperStyle={styles.columnWrapperStyle}
                 data={todoList}
@@ -65,37 +61,34 @@ export const TodoView = () => {
                 renderItem={render}
                 numColumns={2}
                 ListHeaderComponent={<Header createTodoHandler={createTodoHandler}/>}
-                // ListFooterComponent={<Footer/>}
                 ListEmptyComponent={<EmptyContent/>}
             />
-
-        // </ImageBackground>
-
     );
 }
 
-export const TodoEntity = ({route:{params}}:ParamPropsTypes) => {
-    console.log(params)
-    const TodoItem=useAppSelector(state => state.todoListState.todos[0])
+
+export const TodoEntity = ({route:{params:{todo}}}:TasksPropsType) => {
+    const tasks=useAppSelector(state => state.tasksState.tasksList)
+    const dispatch=useAppDispatch()
     const addTaskHandler = (task: TaskType) => {
-        // dispatch(taskSlice.actions.addTask(task))
+        dispatch(taskSlice.actions.addTask(task))
     }
+
   return(
-      <Todo todo={TodoItem} addTaskHandler={addTaskHandler}/>
+      <Todo todo={todo} addTaskHandler={addTaskHandler}>
+          <Tasks todo={todo} tasks={tasks[todo.id]}/>
+      </Todo>
   )
 }
 
-export const TodoScreen = () => {
-    const Stack=createStackNavigator<TodoStackParamList>()
-
+export const TaskScreen = () => {
+    const Stack=createStackNavigator<TasksStackParamList>()
     return(
         <Stack.Navigator screenOptions={{headerShown:false}}>
-            <Stack.Screen name={"TodoView"} component={TodoView}/>
-            <Stack.Screen name={"Todo"} component={TodoEntity}/>
+            <Stack.Screen name={"TaskList"} component={TodoEntity} />
+            <Stack.Screen name={"Task"} component={TaskEntity} />
         </Stack.Navigator>
     )
-
-
 }
 
 const styles = StyleSheet.create({

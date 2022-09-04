@@ -1,11 +1,12 @@
 import React from "react";
 import {createBottomTabNavigator} from "@react-navigation/bottom-tabs";
 import {LoginView} from "./screens/login-screen/LoginView";
-import {TodoScreen, TodoView} from "./screens/todo-screens/TodoView";
+import {TodoView} from "./screens/todo-screens/TodoView";
 import {TEXTCOLOR} from "./common/Variables";
 import {RootStackParamList, useAppNavigation} from "./screens/types/types";
 import {createStackNavigator} from "@react-navigation/stack";
 import {authApi} from "./DAL/AuthAPI";
+import {TodoScreen} from "./screens/todo-screens/TodoScreen";
 
 
 export const Main = () => {

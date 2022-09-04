@@ -6,6 +6,8 @@ import {CustomButton} from "../../common/CustomButton";
 import {BACKGROUNDCOLOR, FONTSIZEPrimary, HEIGHT, MARGIN, PADDING, TEXTCOLOR, WIDTH} from "../../common/Variables";
 import {TodoItem} from "../../BLL/TodoReducer";
 import {useDispatch} from "react-redux";
+import {useNavigation} from "@react-navigation/native";
+import {useAppNavigation} from "../types/types";
 
 type TaskProps = {
     task: TaskType
@@ -13,6 +15,7 @@ type TaskProps = {
 }
 export const Task: React.FC<TaskProps> = memo(({task, todo}) => {
     const [isModalVisible, setIsModalVisible] = useState(false)
+    const navigation=useAppNavigation()
     const dispatch = useDispatch()
     const doubleTap = () => {
         let tapCount = 0
@@ -22,7 +25,7 @@ export const Task: React.FC<TaskProps> = memo(({task, todo}) => {
                 tapCount = 0
             }, 300)
             if (tapCount === 2) {
-                setIsModalVisible(true)
+                    navigation.navigate("TodoScreen",{screen:"Todo",params:{screen:"Task",params:{todo,task}}})
             } else {
             }
         }
