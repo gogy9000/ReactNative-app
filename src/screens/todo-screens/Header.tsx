@@ -1,6 +1,6 @@
 import {StyleSheet, TextInput, View, StatusBar} from "react-native";
 import {BACKGROUNDCOLOR, FONTSIZEPrimary, HEIGHT, PADDING, TEXTCOLOR, WIDTH} from "../../common/Variables";
-import {FC, memo, useState} from "react";
+import {FC, memo, useEffect, useState} from "react";
 import {CustomButton} from "../../common/CustomButton";
 import {commonStyles} from "../../common/Styles";
 import {StyledInput} from "../../styled-components/StyledInput";
@@ -33,9 +33,11 @@ export const Header:FC<HeaderProps> = memo( ({createTodoHandler}) => {
            console.log(e)
        }
     }
-    if(data&&data.resultCode===1){
-        navigation.navigate("Login")
-    }
+    useEffect(()=>{
+        if(data&&data.resultCode===1){
+            navigation.navigate("LoginView")
+        }
+    },[data])
 
     return (
         <View style={styles.container}>

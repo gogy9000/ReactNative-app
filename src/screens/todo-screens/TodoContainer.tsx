@@ -33,7 +33,7 @@ export const TodoContainer: FC<TodoContainerProps>  = memo( (props) => {
     }
     return (
         <Pressable onLongPress={() => {
-            setIsModalVisible(!isModalVisible)
+            // setIsModalVisible(!isModalVisible)
         }}>
             <View style={[styles.todoContainer, commonBorderStyle(10)]}>
                 <Todo viewMod addTaskHandler={addTaskHandler} todo={props.todo}>
@@ -49,18 +49,18 @@ export const TodoContainer: FC<TodoContainerProps>  = memo( (props) => {
                 </Todo>
             </View>
 
-            <Modal
-                visible={isModalVisible}
-                transparent={true}
-                onRequestClose={()=>{setIsModalVisible(false)}}
-                animationType={"fade"}
-            >
-                <View style={[styles.modal, commonBorderStyle(10)]}>
-                    <Todo addTaskHandler={addTaskHandler} todo={props.todo}>
-                        {props.children}
-                    </Todo>
-                </View>
-            </Modal>
+            {/*<Modal*/}
+            {/*    visible={isModalVisible}*/}
+            {/*    transparent={true}*/}
+            {/*    onRequestClose={()=>{setIsModalVisible(false)}}*/}
+            {/*    animationType={"fade"}*/}
+            {/*>*/}
+            {/*    <View style={[styles.modal, commonBorderStyle(10)]}>*/}
+            {/*        <Todo addTaskHandler={addTaskHandler} todo={props.todo}>*/}
+            {/*            {props.children}*/}
+            {/*        </Todo>*/}
+            {/*    </View>*/}
+            {/*</Modal>*/}
         </Pressable>
     )
 })

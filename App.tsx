@@ -14,14 +14,13 @@ export default function App() {
     StatusBar.setBarStyle("light-content")
 
     return (
-
+        <ImageBackground style={styles.imageBackground} source={realism} resizeMode={"cover"}>
         <NavigationContainer>
             <Provider store={store}>
-                <ImageBackground style={styles.imageBackground} source={realism} resizeMode={"cover"}>
                     <Main/>
-                </ImageBackground>
             </Provider>
         </NavigationContainer>
+        </ImageBackground>
 
     );
 }

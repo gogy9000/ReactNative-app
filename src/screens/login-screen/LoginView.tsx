@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import {CustomButton} from "../../common/CustomButton";
 import {useNavigation} from "@react-navigation/native";
 import {StyleSheet, View, TextInput, GestureResponderEvent, NativeSyntheticEvent, NativeTouchEvent} from "react-native";
@@ -7,7 +7,7 @@ import {StyledInput} from "../../styled-components/StyledInput";
 import {BACKGROUNDCOLOR, MARGIN, PADDING, WIDTH} from "../../common/Variables";
 import {commonBorderStyle} from "../../common/Styles";
 import {authApi} from "../../DAL/AuthAPI";
-import {useAppNavigation} from "../types/types";
+import {TodoStackParamList, useAppNavigation} from "../types/types";
 
 
 
@@ -23,10 +23,11 @@ export const LoginView = () => {
          console.log(e)
      }
     }
-    if (data&&data.resultCode===0){
-        navigation.navigate("Todo")
-    }
-
+    useEffect(()=>{
+        if (data&&data.resultCode===0){
+            navigation.navigate("TodoScreen",{screen:"TodoView"})
+        }
+    },[data])
 
 
 
