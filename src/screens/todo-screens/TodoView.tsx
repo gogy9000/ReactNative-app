@@ -9,7 +9,7 @@ import uuid from 'react-native-uuid'
 import {TodoItem, todoSlice} from "../../BLL/TodoReducer";
 import {taskSlice, TaskType} from "../../BLL/TaskReducer";
 import {useDispatch, useSelector} from "react-redux";
-import {RootState} from "../../BLL/Store";
+import {RootStateType} from "../../BLL/Store";
 import React from "react";
 import {Tasks} from "./Tasks";
 import {BottomTabBarHeightContext} from "@react-navigation/bottom-tabs";
@@ -17,8 +17,8 @@ import {BottomTabBarHeightContext} from "@react-navigation/bottom-tabs";
 
 export const TodoView = () => {
 
-    const todoList = useSelector((state: RootState) => state.todoListState.todos)
-    const tasks = useSelector((state: RootState) => state.tasksState.tasksList)
+    const todoList = useSelector((state: RootStateType) => state.todoListState.todos)
+    const tasks = useSelector((state: RootStateType) => state.tasksState.tasksList)
 
     const dispatch = useDispatch()
 

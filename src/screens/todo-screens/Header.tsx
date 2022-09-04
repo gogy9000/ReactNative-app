@@ -5,6 +5,8 @@ import {CustomButton} from "../../common/CustomButton";
 import {commonStyles} from "../../common/Styles";
 import {StyledInput} from "../../styled-components/StyledInput";
 import React from "react";
+import {useAppNavigation} from "../types/types";
+import {authApi} from "../../DAL/AuthAPI";
 
 
 type HeaderProps={
@@ -12,13 +14,29 @@ type HeaderProps={
 }
 export const Header:FC<HeaderProps> = memo( ({createTodoHandler}) => {
     const [inputValue,setInputValue]=useState("")
+    const navigation=useAppNavigation()
+
+    const[logout]=authApi.useLogoutMutation()
+    const {data}=authApi.useAuthMeQuery()
+
     const onTextInput = (value:string) => {
         setInputValue(value)
     }
-    const onPressButton = () => {
+    const onCreateTodo = () => {
         createTodoHandler(inputValue)
         setInputValue("")
     }
+    const onLogout = async () => {
+       try {
+           await logout()
+       } catch (e)  {
+           console.log(e)
+       }
+    }
+    if(data&&data.resultCode===1){
+        navigation.navigate("Login")
+    }
+
     return (
         <View style={styles.container}>
             <StyledInput
@@ -29,9 +47,10 @@ export const Header:FC<HeaderProps> = memo( ({createTodoHandler}) => {
                 placeholder={"Search..."}
                 caretHidden
             />
-            <CustomButton styleButton={styles.button} onPress={onPressButton}>
+            <CustomButton styleButton={styles.button} onPress={onCreateTodo}>
                 Create todo
             </CustomButton>
+            <CustomButton onPress={onLogout}>logout</CustomButton>
         </View>
     )
 })
@@ -49,11 +68,11 @@ const styles=StyleSheet.create({
         justifyContent:"space-between",
     },
     button:{
-        height: (HEIGHT - PADDING * 2) / 19,
-         width: (WIDTH - PADDING * 2) / 2,
+        // height: (HEIGHT - PADDING * 2) / 19,
+        //  width: (WIDTH - PADDING * 2) / 2,
     },
     modalInputStyle:{
-        height:(HEIGHT-PADDING*2)/19,
-        width:(WIDTH-PADDING*2)/2,
+        // height:(HEIGHT-PADDING*2)/19,
+        // width:(WIDTH-PADDING*2)/2,
     }
 })

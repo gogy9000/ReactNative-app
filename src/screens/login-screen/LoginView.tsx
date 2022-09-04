@@ -6,18 +6,28 @@ import { Formik } from 'formik';
 import {StyledInput} from "../../styled-components/StyledInput";
 import {BACKGROUNDCOLOR, MARGIN, PADDING, WIDTH} from "../../common/Variables";
 import {commonBorderStyle} from "../../common/Styles";
-import {useAuthMeQuery,useLoginMutation} from "../../DAL/AuthAPI";
+import {authApi} from "../../DAL/AuthAPI";
+import {useAppNavigation} from "../types/types";
 
 
 
 
 export const LoginView = () => {
-    const {data,error,isLoading}=useAuthMeQuery("")
-    const [login,{data:response}]=useLoginMutation()
-    const navigate=useNavigation()
+    const {data}=authApi.useAuthMeQuery()
+    const [login]=authApi.useLoginMutation()
+    const navigation=useAppNavigation()
     const onSubmit =async (values:{ email: string ,password:string}) => {
-      await  login(values)
+     try {
+        await  login(values)
+     }catch (e) {
+         console.log(e)
+     }
     }
+    if (data&&data.resultCode===0){
+        navigation.navigate("Todo")
+    }
+
+
 
 
     return(
