@@ -1,12 +1,12 @@
 import {StyleSheet, TextInput, View, StatusBar} from "react-native";
-import {BACKGROUNDCOLOR, FONTSIZEPrimary, HEIGHT, PADDING, TEXTCOLOR, WIDTH} from "../../common/Variables";
+import {BACKGROUNDCOLOR, FONTSIZEPrimary, HEIGHT, PADDING, TEXTCOLOR, WIDTH} from "../common/Variables";
 import {FC, memo, useEffect, useState} from "react";
-import {CustomButton} from "../../common/CustomButton";
-import {commonStyles} from "../../common/Styles";
-import {StyledInput} from "../../styled-components/StyledInput";
+import {CustomButton} from "../common/CustomButton";
+import {commonStyles} from "../common/Styles";
+import {StyledInput} from "../styled-components/StyledInput";
 import React from "react";
-import {useAppNavigation} from "../types/types";
-import {authApi} from "../../DAL/AuthAPI";
+import {authApi} from "../DAL/AuthAPI";
+import {useAppNavigation} from "../CustomHooks/CustomHooks";
 
 
 type HeaderProps={
@@ -35,7 +35,7 @@ export const Header:FC<HeaderProps> = memo( ({createTodoHandler}) => {
     }
     useEffect(()=>{
         if(data&&data.resultCode===1){
-            navigation.navigate("LoginView")
+            navigation.navigate("Login")
         }
     },[data])
 

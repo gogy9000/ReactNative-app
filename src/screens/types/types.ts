@@ -1,34 +1,33 @@
-import {CompositeScreenProps, NavigationProp, NavigatorScreenParams, useNavigation} from "@react-navigation/native";
+import {CompositeScreenProps, NavigationProp, NavigatorScreenParams} from "@react-navigation/native";
 import {NativeStackScreenProps} from "@react-navigation/native-stack";
 import {TodoItem} from "../../BLL/TodoReducer";
 import {TaskType} from "../../BLL/TaskReducer";
 
-export type RootStackParamList={
-    LoginView:undefined
-    TodoScreen:NavigatorScreenParams<TodoStackParamList>
+export type RootScreenStackParamList ={
+    Login:undefined
+    TodoScreen:NavigatorScreenParams<TodoScreenStackParamList>
 }
-export type TodoStackParamList={
-    TodoView:undefined
-    Todo:NavigatorScreenParams<TasksStackParamList>
+export type TodoScreenStackParamList ={
+    TodoList:undefined
+    TaskScreen:NavigatorScreenParams<TasksScreenStackParamList>
 }
-export type TasksStackParamList={
+export type TasksScreenStackParamList ={
     TaskList:{todo:TodoItem}
     Task:{todo:TodoItem,task:TaskType}
 }
 export type EntityTaskPropsType=CompositeScreenProps<
-    NativeStackScreenProps<TasksStackParamList,"Task">,
+    NativeStackScreenProps<TasksScreenStackParamList,"Task">,
     TodoPropsTypes
     >
 
 export type TasksPropsType=CompositeScreenProps<
-    NativeStackScreenProps<TasksStackParamList,"TaskList">,
+    NativeStackScreenProps<TasksScreenStackParamList,"TaskList">,
     TodoPropsTypes
     >
 
 export type TodoPropsTypes =CompositeScreenProps<
-    NativeStackScreenProps<TodoStackParamList,"Todo">,
-    NativeStackScreenProps<RootStackParamList>
+    NativeStackScreenProps<TodoScreenStackParamList,"TaskScreen">,
+    NativeStackScreenProps<RootScreenStackParamList>
     >
 
-type useNavigationType=NavigationProp<RootStackParamList>
-export const useAppNavigation=()=>useNavigation<useNavigationType>()
+export type useNavigationType=NavigationProp<RootScreenStackParamList>

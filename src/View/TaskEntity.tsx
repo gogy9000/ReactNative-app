@@ -1,16 +1,16 @@
 import {ImageBackground, StyleSheet, Text, View} from "react-native";
-import {commonBorderStyle} from "../../common/Styles";
-import {CustomButton} from "../../common/CustomButton";
+import {commonBorderStyle} from "../common/Styles";
+import {CustomButton} from "../common/CustomButton";
 import React from "react";
-import {BACKGROUNDCOLOR, FONTSIZEPrimary, HEIGHT, MARGIN, PADDING, TEXTCOLOR, WIDTH} from "../../common/Variables";
-import {EntityTaskPropsType, TasksPropsType} from "../types/types";
+import {BACKGROUNDCOLOR, FONTSIZEPrimary, HEIGHT, MARGIN, PADDING, TEXTCOLOR, WIDTH} from "../common/Variables";
+import {EntityTaskPropsType, TasksPropsType} from "../screens/types/types";
 
 export const TaskEntity = ({route:{params:{todo,task}}}:EntityTaskPropsType) => {
 
     return (
         <ImageBackground
             style={
-                [styles.modalContainer, commonBorderStyle()]
+                [styles.modalContainer]
             }
             source={todo.decKCover}
             borderRadius={10}
