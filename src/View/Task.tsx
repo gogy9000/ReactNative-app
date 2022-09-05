@@ -6,10 +6,11 @@ import {CustomButton} from "../common/CustomButton";
 import {BACKGROUNDCOLOR, FONTSIZEPrimary, HEIGHT, MARGIN, PADDING, TEXTCOLOR, WIDTH} from "../common/Variables";
 import {TodoItem} from "../BLL/TodoReducer";
 import {useAppDispatch, useAppNavigation} from "../CustomHooks/CustomHooks";
+import {TodoListItem} from "../DAL/types/types";
 
 type TaskProps = {
     task: TaskType
-    todo: TodoItem
+    todo: TodoListItem
 }
 export const Task: React.FC<TaskProps> = memo(({task, todo}) => {
     const navigation=useAppNavigation()

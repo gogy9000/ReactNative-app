@@ -1,6 +1,6 @@
 
 import {TasksScreenStackParamList} from "../types/types";
-import {TaskEntity} from "../../View/TaskEntity";
+import {TaskView} from "../../View/TaskView";
 import React from "react";
 import {TaskList} from "../../View/TaskList";
 import {createBottomTabNavigator} from "@react-navigation/bottom-tabs";
@@ -14,7 +14,7 @@ export const TaskScreen = () => {
             screenOptions={{headerShown: false,}}
         >
             <Tab.Screen name={"TaskList"} component={TaskList}/>
-            <Tab.Screen name={"Task"} component={TaskEntity}/>
+            <Tab.Screen name={"Task"} component={TaskView}/>
         </Tab.Navigator>
     )
 }

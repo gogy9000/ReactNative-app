@@ -2,6 +2,7 @@ import {CompositeScreenProps, NavigationProp, NavigatorScreenParams} from "@reac
 import {NativeStackScreenProps} from "@react-navigation/native-stack";
 import {TodoItem} from "../../BLL/TodoReducer";
 import {TaskType} from "../../BLL/TaskReducer";
+import {TodoListItem} from "../../DAL/types/types";
 
 export type RootScreenStackParamList ={
     Login:undefined
@@ -12,8 +13,8 @@ export type TodoScreenStackParamList ={
     TaskScreen:NavigatorScreenParams<TasksScreenStackParamList>
 }
 export type TasksScreenStackParamList ={
-    TaskList:{todo:TodoItem}
-    Task:{todo:TodoItem,task:TaskType}
+    TaskList:{todo:TodoListItem}
+    Task:{todo:TodoListItem,task:TaskType}
 }
 export type EntityTaskPropsType=CompositeScreenProps<
     NativeStackScreenProps<TasksScreenStackParamList,"Task">,

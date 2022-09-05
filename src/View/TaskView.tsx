@@ -1,18 +1,17 @@
 import {ImageBackground, StyleSheet, Text, View} from "react-native";
-import {commonBorderStyle} from "../common/Styles";
 import {CustomButton} from "../common/CustomButton";
 import React from "react";
-import {BACKGROUNDCOLOR, FONTSIZEPrimary, HEIGHT, MARGIN, PADDING, TEXTCOLOR, WIDTH} from "../common/Variables";
-import {EntityTaskPropsType, TasksPropsType} from "../screens/types/types";
+import {BACKGROUNDCOLOR, FONTSIZEPrimary, PADDING, TEXTCOLOR} from "../common/Variables";
+import {EntityTaskPropsType} from "../screens/types/types";
+// @ts-ignore
+import realizm from "../common/assets/realizm.jpg"
 
-export const TaskEntity = ({route:{params:{todo,task}}}:EntityTaskPropsType) => {
+export const TaskView = ({route:{params:{todo,task}}}:EntityTaskPropsType) => {
 
     return (
         <ImageBackground
-            style={
-                [styles.modalContainer]
-            }
-            source={todo.decKCover}
+            style={[styles.modalContainer]}
+            source={realizm}
             borderRadius={10}
             resizeMode={"cover"}>
             <Text style={[styles.title]}>{task.taskTitle}</Text>

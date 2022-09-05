@@ -5,10 +5,13 @@ import {CustomButton} from "../common/CustomButton";
 import {FONTSIZEPrimary, PADDING, TEXTCOLOR, WIDTH} from "../common/Variables";
 import React from "react";
 import {StyledInput} from "../styled-components/StyledInput";
+// @ts-ignore
+import realizm from "../common/assets/realizm.jpg"
+import {TodoListItem} from "../DAL/types/types";
 
 type TodoProps = {
     viewMod?: boolean
-    todo: TodoItem
+    todo: TodoListItem
     children?: ReactElement
     addTaskHandler?: () => void
     onChangeTodoTitle?:(value: string)=>void
@@ -24,7 +27,7 @@ export const Todo: FC<TodoProps> = memo((props) => {
     return (
         <ImageBackground
             style={styles.deckCover}
-            source={todo.decKCover}
+            source={realizm}
             borderRadius={viewMod?10:0}
             resizeMode={"cover"}>
             <Text style={styles.title}>{todo.title}</Text>

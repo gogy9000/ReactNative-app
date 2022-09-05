@@ -3,10 +3,11 @@ import React, {memo} from "react";
 import {Task} from "./Task";
 import {TodoItem} from "../BLL/TodoReducer";
 import {FlatList, ListRenderItem, Text,View} from "react-native";
+import {TodoListItem} from "../DAL/types/types";
 
 type TasksProps = {
     tasks: TaskType[]
-    todo:TodoItem
+    todo:TodoListItem
     viewMod?:boolean
 }
 export const Tasks: React.FC<TasksProps> = memo(({tasks,todo,viewMod}) => {

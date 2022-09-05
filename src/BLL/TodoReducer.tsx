@@ -6,7 +6,6 @@ import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 export type TodoItem = {
     id: string,
     title: string,
-    decKCover: ImageSourcePropType,
     status: number
 }
 export type InitStateType = {
