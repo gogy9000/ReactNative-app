@@ -21,19 +21,19 @@ const axiosQuery = (
     unknown,
     unknown> =>
     async ({url, method, data, params}) => {
-        const cookie= await loadStorage("Cookie")
-        if(cookie){
-            headers={
+        const cookie = await loadStorage("Cookie")
+        if (cookie) {
+            headers = {
                 ...headers,
-               "cookie": `_ym_d=1649395568; _ym_uid=1649395568426605962; ASP.NET_SessionId=opdrxfnafx0gj2g1ulp5mzs3; _ym_isad=2; ${cookie}`
+                "cookie": `_ym_d=1649395568; _ym_uid=1649395568426605962; ASP.NET_SessionId=opdrxfnafx0gj2g1ulp5mzs3; _ym_isad=2; ${cookie}`
             }
         }
         try {
             console.log(headers)
-            const result = await axios({url: baseUrl + url, method, data, params,headers,withCredentials})
+            const result = await axios({url: baseUrl + url, method, data, params, headers, withCredentials})
             console.log(result)
-            if(result.headers["set-cookie"]){
-                saveStorage("Cookie",result.headers["set-cookie"]?.join(""))
+            if (result.headers["set-cookie"]) {
+                saveStorage("Cookie", result.headers["set-cookie"]?.join(""))
             }
             return {data: result.data}
         } catch (axiosError) {
@@ -55,7 +55,7 @@ const axiosQuery = (
 
 export const Api = createApi({
     reducerPath: "Api",
-    tagTypes: ["login", "logout","postTodo","deleteTodo","putTodo"],
+    tagTypes: ["login", "logout", "postTodo", "deleteTodo", "putTodo", "postTask", "putTask", "deleteTask"],
     baseQuery: axiosQuery(
         {
             baseUrl: 'https://social-network.samuraijs.com/api/1.1',
@@ -68,10 +68,10 @@ export const Api = createApi({
     endpoints: ((build) => ({
         authMe: build.query<Data<AuthDataType>, void>({
             query: () => ({url: `/auth/me`, method: "get"}),
-            providesTags:() => ["login", "logout"]
+            providesTags: () => ["login", "logout"]
         }),
         login: build.mutation<Data<{ userId: string }>, LoginPayloadType>({
-            query: (payload) =>({url: `/auth/login`, method: "POST", data: payload}),
+            query: (payload) => ({url: `/auth/login`, method: "POST", data: payload}),
             invalidatesTags: ["login"]
         }),
         logout: build.mutation<Data<{}>, void>({
@@ -81,32 +81,41 @@ export const Api = createApi({
 
         getTodoList: build.query<TodoListItem[], void>({
             query: () => ({url: `/todo-lists`, method: "get"}),
-            providesTags:()=>["postTodo","putTodo","deleteTodo"]
+            providesTags: () => ["postTodo", "putTodo", "deleteTodo"]
         }),
-        postTodo: build.mutation<Data<Item<TodoListItem>>,string>({
+        postTodo: build.mutation<Data<Item<TodoListItem>>, string>({
             query: (title: string = "New todo") => ({url: `/todo-lists`, method: `post`, data: {title}}),
-            invalidatesTags:["postTodo"]
+            invalidatesTags: ["postTodo"]
         }),
-        putTodo:build.mutation<Data<{}>,{title: string,todoId:string}>({
-            query: (payload) => ({url: `/todo-lists/${payload.todoId}`, method: `put`, data: {title:payload.title}}),
-            invalidatesTags:["putTodo"]
+        putTodo: build.mutation<Data<{}>, { title: string, todoId: string }>({
+            query: (payload) => ({url: `/todo-lists/${payload.todoId}`, method: `put`, data: {title: payload.title}}),
+            invalidatesTags: ["putTodo"]
         }),
-        deleteTodo:build.mutation<Data<{}>,string>({
-            query:(todoId)=>({url:`todo-lists/${todoId}`,method:"delete"}),
-            invalidatesTags:["deleteTodo"]
+        deleteTodo: build.mutation<Data<{}>, string>({
+            query: (todoId) => ({url: `/todo-lists/${todoId}`, method: "delete"}),
+            invalidatesTags: ["deleteTodo"]
         }),
 
-        getTasks:build.query<GetTaskType,{todolistId:string, count:number, page: number }>({
-            query:({todolistId,page=1,count=100})=>({url:`todo-lists/${todolistId}/tasks`,method:"get",params:{count,page}})
+        getTasks: build.query<GetTaskType, { todolistId: string, count: number, page: number }>({
+            query: ({todolistId, page = 1, count = 100}) => ({
+                url: `/todo-lists/${todolistId}/tasks`,
+                method: "get",
+                params: {count, page}
+            }),
+            providesTags: () => ["postTask", "putTask", "deleteTask"]
         }),
-        postTask:build.mutation<Data<Item<TaskItem>>,{todolistId: string, title: string}>({
-            query:({todolistId,title})=>({url:`todo-lists/${todolistId}/tasks`,method:"post",data:{title}})
+        postTask: build.mutation<Data<Item<TaskItem>>, { todolistId: string, title: string }>({
+            query: ({todolistId, title}) => ({url: `/todo-lists/${todolistId}/tasks`, method: "post", data: {title}}),
+            invalidatesTags: ["postTask"]
         }),
-        putTask:build.mutation<Data<Item<TaskItem>>,TaskItem>({
-            query:(task)=>({url:`todo-lists/${task.todoListId}/tasks/${task.id}`,method:"put",data:task})
+
+        putTask: build.mutation<Data<Item<TaskItem>>, TaskItem>({
+            query: (task) => ({url: `/todo-lists/${task.todoListId}/tasks/${task.id}`, method: "put", data: task}),
+            invalidatesTags: ["putTask"]
         }),
-        deleteTask:build.mutation<Data<{}>,{todolistId: string, taskId: string}>({
-            query:({todolistId,taskId})=>({url:`todo-lists/${todolistId}/tasks/${taskId}`,method:"delete"})
+        deleteTask: build.mutation<Data<{}>, { todolistId: string, taskId: string }>({
+            query: ({todolistId, taskId}) => ({url: `/todo-lists/${todolistId}/tasks/${taskId}`, method: "delete"}),
+            invalidatesTags: ["deleteTask"]
         })
 
     }))
