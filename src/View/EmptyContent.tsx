@@ -1,5 +1,6 @@
 import {Text, View, StyleSheet} from "react-native";
-import {FONTSIZEPrimary, HEIGHT, TEXTCOLOR, WIDTH} from "./common/Variables";
+import {FONTSIZEPrimary, HEIGHT, TEXTCOLOR, WIDTH} from "../common/Variables";
+import React from "react";
 
 export const EmptyContent = () => {
     return (
