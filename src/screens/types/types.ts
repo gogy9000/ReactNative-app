@@ -1,6 +1,5 @@
 import {CompositeScreenProps, NavigationProp, NavigatorScreenParams} from "@react-navigation/native";
 import {NativeStackScreenProps} from "@react-navigation/native-stack";
-import {TodoItem} from "../../BLL/TodoReducer";
 import {TaskType} from "../../BLL/TaskReducer";
 import {TodoListItem} from "../../DAL/types/types";
 

@@ -3,7 +3,6 @@ import {store} from "./src/BLL/Store";
 import React from "react";
 import {NavigationContainer} from '@react-navigation/native';
 import {ImageBackground, StatusBar, StyleSheet} from "react-native";
-import {TodoList} from "./src/View/TodoList";
 // @ts-ignore
 import realism from "./src/common/assets/realizm.jpg";
 import {HEIGHT, WIDTH} from "./src/common/Variables";
@@ -21,7 +20,6 @@ export default function App() {
             </Provider>
         </NavigationContainer>
         </ImageBackground>
-
     );
 }
 

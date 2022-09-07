@@ -5,7 +5,7 @@ import {CustomButton} from "../common/CustomButton";
 import {commonStyles} from "../common/Styles";
 import {StyledInput} from "../styled-components/StyledInput";
 import React from "react";
-import {authApi} from "../DAL/AuthAPI";
+import {Api} from "../DAL/Api";
 import {useAppNavigation} from "../CustomHooks/CustomHooks";
 
 
@@ -16,8 +16,8 @@ export const Header:FC<HeaderProps> = memo( ({createTodoHandler}) => {
     const [inputValue,setInputValue]=useState("")
     const navigation=useAppNavigation()
 
-    const[logout]=authApi.useLogoutMutation()
-    const {data}=authApi.useAuthMeQuery()
+    const[logout]=Api.useLogoutMutation()
+    const {data}=Api.useAuthMeQuery()
 
     const onTextInput = (value:string) => {
         setInputValue(value)

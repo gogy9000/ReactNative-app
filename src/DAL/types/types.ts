@@ -33,7 +33,6 @@ export type TaskItem = {
     todoListId: string
     order: number
     addedDate: string
-    isASynchronizedTask:boolean
 }
 export type LoginPayloadType={
     email:string

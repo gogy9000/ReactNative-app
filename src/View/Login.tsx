@@ -1,16 +1,18 @@
 import React, {useEffect} from "react";
 import {CustomButton} from "../common/CustomButton";
-import {StyleSheet, View, NativeSyntheticEvent, NativeTouchEvent} from "react-native";
+import {StyleSheet, View, Text, NativeSyntheticEvent, NativeTouchEvent, ActivityIndicator} from "react-native";
 import {Formik} from 'formik';
 import {StyledInput} from "../styled-components/StyledInput";
 import {MARGIN, PADDING, WIDTH} from "../common/Variables";
 import {commonBorderStyle} from "../common/Styles";
-import {authApi} from "../DAL/AuthAPI";
+import {Api} from "../DAL/Api";
 import {useAppNavigation} from "../CustomHooks/CustomHooks";
+import {AxiosError} from "axios";
 
 export const Login = () => {
-    const {data} = authApi.useAuthMeQuery()
-    const [login] = authApi.useLoginMutation()
+    const {data, isLoading, error, isError} = Api.useAuthMeQuery()
+    const err=error as AxiosError
+    const [login] = Api.useLoginMutation()
     const navigation = useAppNavigation()
 
     useEffect(() => {
@@ -26,7 +28,20 @@ export const Login = () => {
             console.log(e)
         }
     }
-
+    if (isLoading) {
+        return (
+            <View style={[styles.loginContainer]}>
+               <ActivityIndicator size={"large"} color={"rgb(255,255,255)"}/>
+            </View>
+        )
+    }
+    if (isError) {
+        return (
+            <View style={[styles.loginContainer]}>
+                <Text>{err.message}</Text>
+            </View>
+        )
+    }
     return (
         <View style={[styles.loginContainer]}>
             <Formik

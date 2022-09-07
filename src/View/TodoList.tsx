@@ -9,28 +9,20 @@ import {EmptyContent} from "./EmptyContent";
 import {ViewModContainer} from "./ViewModContainer";
 import uuid from 'react-native-uuid'
 import {TodoItem, todoSlice} from "../BLL/TodoReducer";
-import React from "react";
+import React, {useEffect} from "react";
 import {Tasks} from "./Tasks";
 import {Todo} from "./Todo";
-import {authApi} from "../DAL/AuthAPI";
+import {Api} from "../DAL/Api";
 import {TodoListItem} from "../DAL/types/types";
 
 
 export const TodoList = () => {
-
     const tasks = useAppSelector(state => state.tasksState.tasksList)
     const navigation = useAppNavigation()
-    const dispatch = useAppDispatch()
-    const {data:todoList,error,isLoading}=authApi.useTodoListQuery()
-    const [createTodo]=authApi.usePostTodoMutation()
+    const {data:todoList,error,isLoading}=Api.useGetTodoListQuery()
+    const [createTodo]=Api.usePostTodoMutation()
 
     const createTodoHandler = (newTodoTitle: string) => {
-        // const todoTitle = !!newTodoTitle ? newTodoTitle : "new todo"
-        // const newId = uuid.v1().toString()
-        // dispatch(todoSlice.actions.createTodoList(
-        //         {status: 0, title: todoTitle, id: newId}
-        //     )
-        // )
         createTodo(newTodoTitle)
     }
 
@@ -52,7 +44,7 @@ export const TodoList = () => {
             </TouchableOpacity>
         )
     }
-    // if(todoList){
+
         return (
             <FlatList
                 data={todoList}
@@ -63,9 +55,5 @@ export const TodoList = () => {
                 ListEmptyComponent={<EmptyContent/>}
                 listKey={"root"}
             />
-
         );
-    // }
-
-
 }

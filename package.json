@@ -4,7 +4,7 @@
   "main": "node_modules/expo/AppEntry.js",
   "scripts": {
     "android": "expo start --android",
-    "start": "expo start --port 3001 -c",
+    "start": "expo start --port 8081 -c",
     "ios": "expo start --ios",
     "web": "expo start --web",
     "debug": "expo start 'rndebugger://set-debugger-loc?host=localhost&port=19001'",
