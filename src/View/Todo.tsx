@@ -1,6 +1,5 @@
-import {TodoItem} from "../BLL/TodoReducer";
 import {FC, memo, ReactElement, useCallback} from "react";
-import {ImageBackground, Text, StyleSheet, View} from "react-native";
+import {ImageBackground, Text, StyleSheet, View, StatusBar} from "react-native";
 import {CustomButton} from "../common/CustomButton";
 import {FONTSIZEPrimary, PADDING, TEXTCOLOR, WIDTH} from "../common/Variables";
 import React from "react";
@@ -14,29 +13,31 @@ type TodoProps = {
     todo: TodoListItem
     children?: ReactElement
     addTaskHandler?: () => void
-    onChangeTodoTitle?:(value: string)=>void
-    currentTodoTitle?:string
-    deleteTodoHandler?:(todoId:string)=>void
+    onChangeTaskTitle?: (value: string) => void
+    currentTaskTitle?: string
+    deleteTodoHandler?: (todoId: string) => void
 }
-export const Todo: FC<TodoProps> = memo((props) => {
-    const {children, addTaskHandler, todo, viewMod,onChangeTodoTitle,currentTodoTitle,deleteTodoHandler} = props
 
-    const onAddTask = useCallback( () => {
-        addTaskHandler&&addTaskHandler()
-    },[])
-    const onDeleteTodo = useCallback( () => {
-        deleteTodoHandler&&deleteTodoHandler(todo.id)
-    },[])
+export const Todo: FC<TodoProps> = memo((props) => {
+    const {children, addTaskHandler, todo, viewMod, onChangeTaskTitle, currentTaskTitle, deleteTodoHandler} = props
+
+    const onAddTask = useCallback(() => {
+        addTaskHandler && addTaskHandler()
+    }, [currentTaskTitle])
+
+    const onDeleteTodo = useCallback(() => {
+        deleteTodoHandler && deleteTodoHandler(todo.id)
+    }, [])
 
     return (
         <ImageBackground
             style={styles.deckCover}
             source={realizm}
-            borderRadius={viewMod?10:0}
+            borderRadius={viewMod ? 10 : 0}
             resizeMode={"cover"}>
-            <View>
+            <View style={[styles.titleContainer]}>
                 <Text style={styles.title}>{todo.title}</Text>
-                <CustomButton onPress={onDeleteTodo}>del</CustomButton>
+                <CustomButton onPress={onDeleteTodo}>delete</CustomButton>
             </View>
 
             {
@@ -44,8 +45,8 @@ export const Todo: FC<TodoProps> = memo((props) => {
                 <View style={[styles.inputAndButtonBox]}>
                     <StyledInput
                         style={[styles.input]}
-                        onChangeText={onChangeTodoTitle}
-                        value={currentTodoTitle}
+                        onChangeText={onChangeTaskTitle}
+                        value={currentTaskTitle}
                         placeholderTextColor={TEXTCOLOR}
                         placeholder={"task name..."}
                         caretHidden
@@ -61,11 +62,16 @@ export const Todo: FC<TodoProps> = memo((props) => {
 
 const styles = StyleSheet.create({
     deckCover: {
+        paddingTop: StatusBar.currentHeight || 0,
         flex: 1,
         justifyContent: "flex-start",
         paddingHorizontal: PADDING / 3,
         paddingVertical: PADDING / 3,
 
+    },
+    titleContainer: {
+        flexDirection: "row",
+        justifyContent: "space-between"
     },
     title: {
         fontSize: FONTSIZEPrimary,

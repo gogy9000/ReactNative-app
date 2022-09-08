@@ -1,12 +1,13 @@
-import {ImageBackground, StyleSheet, Text, View} from "react-native";
+import {ImageBackground, StatusBar, StyleSheet, Text, View} from "react-native";
 import {CustomButton} from "../common/CustomButton";
 import React from "react";
 import {BACKGROUNDCOLOR, FONTSIZEPrimary, PADDING, TEXTCOLOR} from "../common/Variables";
-import {EntityTaskPropsType} from "../screens/types/types";
 // @ts-ignore
 import realizm from "../common/assets/realizm.jpg"
+import {useAppSelector} from "../CustomHooks/CustomHooks";
 
-export const TaskView = ({route:{params:{todo,task}}}:EntityTaskPropsType) => {
+export const TaskView = () => {
+    const task = useAppSelector(state => state.navigateParamsState.currentTask)
 
     return (
         <ImageBackground
@@ -14,7 +15,7 @@ export const TaskView = ({route:{params:{todo,task}}}:EntityTaskPropsType) => {
             source={realizm}
             borderRadius={10}
             resizeMode={"cover"}>
-            <Text style={[styles.title]}>{task.taskTitle}</Text>
+            <Text style={[styles.title]}>{task.title}</Text>
             <View style={[styles.taskBar]}>
                 <CustomButton>check</CustomButton>
                 <CustomButton>delete</CustomButton>
@@ -24,11 +25,11 @@ export const TaskView = ({route:{params:{todo,task}}}:EntityTaskPropsType) => {
     )
 }
 const styles = StyleSheet.create({
-
-    checkedTask:{
-        backgroundColor:BACKGROUNDCOLOR
+    checkedTask: {
+        backgroundColor: BACKGROUNDCOLOR
     },
     modalContainer: {
+        paddingTop: StatusBar.currentHeight || 0,
         paddingHorizontal: PADDING / 4,
         flex: 1,
         justifyContent: "space-between"

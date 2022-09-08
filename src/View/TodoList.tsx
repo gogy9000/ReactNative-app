@@ -1,52 +1,45 @@
-import {useAppNavigation, useAppSelector} from "../CustomHooks/CustomHooks";
-import {FlatList, ListRenderItem, TouchableOpacity,} from 'react-native';
+import {useActions, useAppNavigation} from "../CustomHooks/CustomHooks";
+import {ActivityIndicator, FlatList, ListRenderItem, TouchableOpacity,} from 'react-native';
 import {Header} from "./Header";
 import {EmptyContent} from "./EmptyContent";
 import {ViewModContainer} from "./ViewModContainer";
-import React, {useCallback, useEffect} from "react";
-import {Tasks} from "./Tasks";
-import {Todo} from "./Todo";
+import React, {useCallback} from "react";
 import {Api} from "../DAL/Api";
 import {TodoListItem} from "../DAL/types/types";
-
+import {TaskList} from "./TaskList";
+import {TodoContainer} from "./TodoContainer";
 
 export const TodoList = () => {
-    const tasks = useAppSelector(state => state.tasksState.tasksList)
-    const {data: todoList, error, isLoading} = Api.useGetTodoListQuery()
+    const {data: todoList, isLoading} = Api.useGetTodoListQuery()
     const [createTodo] = Api.usePostTodoMutation()
-    const [deleteTodo] = Api.useDeleteTodoMutation()
     const navigation = useAppNavigation()
+    const {changeCurrentTodo} = useActions()
 
     const createTodoHandler = useCallback((newTodoTitle: string) => {
         createTodo(newTodoTitle)
     }, [])
-    const deleteTodoHandler = useCallback((todoId: string) => {
-        deleteTodo(todoId)
-    }, [])
 
-    const render: ListRenderItem<TodoListItem> = ({item}) => {
+    const render: ListRenderItem<TodoListItem> = useCallback(({item}) => {
         const onNavigate = () => {
-            navigation.navigate("TodoScreen", {
-                screen: "TaskScreen",
-                params: {screen: "TaskList", params: {todo: item}}
-            })
+            changeCurrentTodo(item)
+            navigation.navigate("TodoScreen", {screen: "TaskScreen", params: {screen: "TaskList"}})
         }
 
         return (
-            <TouchableOpacity activeOpacity={1} onPress={onNavigate}>
+            <TouchableOpacity activeOpacity={1} onLongPress={onNavigate}>
                 <ViewModContainer>
-                    <Todo deleteTodoHandler={deleteTodoHandler} viewMod todo={item}>
-                        <Tasks viewMod todo={item} tasks={tasks[item.id]}/>
-                    </Todo>
+                    <TodoContainer todo={item}/>
                 </ViewModContainer>
             </TouchableOpacity>
         )
-    }
+    }, [todoList])
 
+    if (isLoading) {
+        return <ActivityIndicator/>
+    }
     return (
         <FlatList
             data={todoList}
-            extraData={tasks}
             keyExtractor={(item) => item.id}
             renderItem={render}
             ListHeaderComponent={<Header createTodoHandler={createTodoHandler}/>}

@@ -1,4 +1,3 @@
-
 import {TasksScreenStackParamList} from "../types/types";
 import {TaskView} from "../../View/TaskView";
 import React from "react";
@@ -14,7 +13,7 @@ export const TaskScreen = () => {
             screenOptions={{headerShown: false,}}
         >
             <Tab.Screen name={"TaskList"} component={TaskList}/>
-            <Tab.Screen name={"Task"} component={TaskView}/>
+            <Tab.Screen name={"TaskView"} component={TaskView}/>
         </Tab.Navigator>
     )
 }

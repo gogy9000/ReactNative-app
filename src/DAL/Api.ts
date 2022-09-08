@@ -96,7 +96,7 @@ export const Api = createApi({
             invalidatesTags: ["deleteTodo"]
         }),
 
-        getTasks: build.query<GetTaskType, { todolistId: string, count: number, page: number }>({
+        getTasks: build.query<GetTaskType, { todolistId: string, count?: number, page?: number }>({
             query: ({todolistId, page = 1, count = 100}) => ({
                 url: `/todo-lists/${todolistId}/tasks`,
                 method: "get",
@@ -104,8 +104,10 @@ export const Api = createApi({
             }),
             providesTags: () => ["postTask", "putTask", "deleteTask"]
         }),
+
         postTask: build.mutation<Data<Item<TaskItem>>, { todolistId: string, title: string }>({
-            query: ({todolistId, title}) => ({url: `/todo-lists/${todolistId}/tasks`, method: "post", data: {title}}),
+            query: ({todolistId, title}) => {
+              return  {url: `/todo-lists/${todolistId}/tasks`, method: "post", data: {title}}},
             invalidatesTags: ["postTask"]
         }),
 
