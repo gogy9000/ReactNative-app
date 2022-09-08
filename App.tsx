@@ -29,7 +29,6 @@ const styles = StyleSheet.create({
         width: WIDTH,
         height: HEIGHT,
     }
-
 });
 
 {/*<Text style={{color: "white"}}>ololo</Text>*/

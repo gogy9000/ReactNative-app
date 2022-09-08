@@ -1,6 +1,5 @@
-import {ImageSourcePropType} from "react-native";
-// @ts-ignore
-import realism from "../common/assets/realizm.jpg";
+
+
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 
 export type TodoItem = {
@@ -14,7 +13,7 @@ export type InitStateType = {
 export const initialState: InitStateType = {
     todos: []
 }
-export const todoSlice=createSlice({
+ const todoSlice=createSlice({
     name:"todo",
     initialState,
     reducers:{
@@ -44,7 +43,6 @@ export const todoReducer = (state: InitStateType, action: { type: string, todoIt
                         id: action.todoItem.id,
                         title: action.todoItem.title,
                         status: action.todoItem.status,
-                        decKCover: realism
                     } : todo
                 )
             }

@@ -1,37 +1,35 @@
-import {TaskType} from "../BLL/TaskReducer";
 import React, {memo} from "react";
 import {Task} from "./Task";
-import {TodoItem} from "../BLL/TodoReducer";
-import {FlatList, ListRenderItem, Text,View} from "react-native";
-import {TodoListItem} from "../DAL/types/types";
+import {FlatList, ListRenderItem, Text, View} from "react-native";
+import {TaskItem, TodoListItem} from "../DAL/types/types";
 
 type TasksProps = {
-    tasks: TaskType[]
-    todo:TodoListItem
-    viewMod?:boolean
+    tasks?: TaskItem[]
+    todo: TodoListItem
+    viewMod?: boolean
 }
-export const Tasks: React.FC<TasksProps> = memo(({tasks,todo,viewMod}) => {
+export const Tasks: React.FC<TasksProps> = memo(({tasks, todo, viewMod}) => {
 
-    const render: ListRenderItem<TaskType> = ({item}) => {
+    const render: ListRenderItem<TaskItem> = ({item}) => {
         return (
             <>{viewMod ?
-                <Text>{item.taskTitle}</Text>:
-                <Task todo={todo} key={item.taskId} task={item} />
+                <Text>{item.title}</Text> :
+                <Task todo={todo} key={item.id} task={item}/>
             }</>
 
         )
     }
 
-    return(
-    <View>
-        <FlatList
-            data={tasks}
-            extraData={tasks}
-            keyExtractor={(item)=>item.taskId}
-            renderItem={render}
-            listKey={todo.id}
-        />
-    </View>
+    return (
+        <View>
+            <FlatList
+                data={tasks}
+                extraData={tasks}
+                keyExtractor={(item) => item.id}
+                renderItem={render}
+                listKey={todo.id}
+            />
+        </View>
     )
 })
 

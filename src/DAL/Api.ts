@@ -58,7 +58,7 @@ export const Api = createApi({
     tagTypes: ["login", "logout", "postTodo", "deleteTodo", "putTodo", "postTask", "putTask", "deleteTask"],
     baseQuery: axiosQuery(
         {
-            baseUrl: 'https://social-network.samuraijs.com/api/1.1',
+            baseUrl: 'https://social-network.samuraijs.com/api/1.1/',
             headers: {
                 "API-KEY": "1fb0efe7-1c1f-46ce-bb74-74ed02f7875f"
             },
@@ -96,7 +96,7 @@ export const Api = createApi({
             invalidatesTags: ["deleteTodo"]
         }),
 
-        getTasks: build.query<GetTaskType, { todolistId: string, count: number, page: number }>({
+        getTasks: build.query<GetTaskType, { todolistId: string, count?: number, page?: number }>({
             query: ({todolistId, page = 1, count = 100}) => ({
                 url: `/todo-lists/${todolistId}/tasks`,
                 method: "get",
@@ -104,8 +104,10 @@ export const Api = createApi({
             }),
             providesTags: () => ["postTask", "putTask", "deleteTask"]
         }),
+
         postTask: build.mutation<Data<Item<TaskItem>>, { todolistId: string, title: string }>({
-            query: ({todolistId, title}) => ({url: `/todo-lists/${todolistId}/tasks`, method: "post", data: {title}}),
+            query: ({todolistId, title}) => {
+              return  {url: `/todo-lists/${todolistId}/tasks`, method: "post", data: {title}}},
             invalidatesTags: ["postTask"]
         }),
 

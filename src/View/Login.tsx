@@ -11,7 +11,7 @@ import {AxiosError} from "axios";
 
 export const Login = () => {
     const {data, isLoading, error, isError} = Api.useAuthMeQuery()
-    const err=error as AxiosError
+    const err = error as AxiosError
     const [login] = Api.useLoginMutation()
     const navigation = useAppNavigation()
 
@@ -31,7 +31,7 @@ export const Login = () => {
     if (isLoading) {
         return (
             <View style={[styles.loginContainer]}>
-               <ActivityIndicator size={"large"} color={"rgb(255,255,255)"}/>
+                <ActivityIndicator size={"large"} color={"rgb(255,255,255)"}/>
             </View>
         )
     }

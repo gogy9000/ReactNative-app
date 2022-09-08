@@ -1,5 +1,5 @@
 import {ColorValue, GestureResponderEvent, StyleSheet, Text, TouchableHighlight, View} from "react-native";
-import {FC, memo, ReactElement} from "react";
+import {FC, memo, ReactElement, useCallback} from "react";
 import {BACKGROUNDCOLOR, FONTSIZEPrimary, PADDING, TEXTCOLOR, WIDTH} from "./Variables";
 import {commonBorderStyle} from "./Styles";
 import React from "react";
@@ -11,17 +11,19 @@ type CustomButtonPropsType = {
     activeOpacity?: number
     underlayColor?: ColorValue
     children?: ReactElement|string
+    disabled?:boolean
 }
 export const CustomButton: FC<CustomButtonPropsType> = memo((props) => {
-    const {children, onPress, title = "Button", styleButton, styleTitle, activeOpacity, underlayColor} = props
+    const {children, onPress, title = "Button", styleButton, styleTitle, activeOpacity, underlayColor,disabled} = props
 
-    const onPressHandler = (event: GestureResponderEvent) => {
+    const onPressHandler = useCallback( (event: GestureResponderEvent) => {
         onPress && onPress(event)
-    }
+    },[onPress])
 
     return (
         <TouchableHighlight
             onPress={onPressHandler}
+            disabled={disabled}
             activeOpacity={!!activeOpacity ? activeOpacity : 0.2}
             style={[styles.button, commonBorderStyle(), styleButton]}
             underlayColor={!!underlayColor ? underlayColor : BACKGROUNDCOLOR}
