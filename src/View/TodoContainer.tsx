@@ -8,6 +8,7 @@ import {ActivityIndicator} from "react-native";
 type TodoContainerProps = {
     todo: TodoListItem
 }
+
 export const TodoContainer: FC<TodoContainerProps> = memo(({todo}) => {
     const [taskTitle, setTaskTitle] = useState("")
     const {data, isLoading} = Api.useGetTasksQuery({todolistId: todo.id})

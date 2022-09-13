@@ -1,11 +1,9 @@
 import {FC, memo, ReactElement, useCallback} from "react";
-import {ImageBackground, Text, StyleSheet, View, StatusBar} from "react-native";
+import {Text, StyleSheet, View, StatusBar} from "react-native";
 import {CustomButton} from "../common/CustomButton";
 import {FONTSIZEPrimary, PADDING, TEXTCOLOR, WIDTH} from "../common/Variables";
 import React from "react";
 import {StyledInput} from "../styled-components/StyledInput";
-// @ts-ignore
-import realizm from "../common/assets/realizm.jpg"
 import {TodoListItem} from "../DAL/types/types";
 
 type TodoProps = {
@@ -27,19 +25,14 @@ export const Todo: FC<TodoProps> = memo((props) => {
 
     const onDeleteTodo = useCallback(() => {
         deleteTodoHandler && deleteTodoHandler(todo.id)
-    }, [])
+    }, [todo.id,deleteTodoHandler])
 
     return (
-        <ImageBackground
-            style={styles.deckCover}
-            source={realizm}
-            borderRadius={viewMod ? 10 : 0}
-            resizeMode={"cover"}>
+        <View style={styles.container}>
             <View style={[styles.titleContainer]}>
                 <Text style={styles.title}>{todo.title}</Text>
                 <CustomButton onPress={onDeleteTodo}>delete</CustomButton>
             </View>
-
             {
                 !viewMod &&
                 <View style={[styles.inputAndButtonBox]}>
@@ -55,13 +48,13 @@ export const Todo: FC<TodoProps> = memo((props) => {
                 </View>
             }
             {children || null}
-        </ImageBackground>
+        </View>
     )
 
 })
 
 const styles = StyleSheet.create({
-    deckCover: {
+    container: {
         paddingTop: StatusBar.currentHeight || 0,
         flex: 1,
         justifyContent: "flex-start",

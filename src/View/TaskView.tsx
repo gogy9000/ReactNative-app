@@ -1,34 +1,29 @@
-import {ImageBackground, StatusBar, StyleSheet, Text, View} from "react-native";
+import {StatusBar, StyleSheet, Text, View} from "react-native";
 import {CustomButton} from "../common/CustomButton";
 import React from "react";
 import {BACKGROUNDCOLOR, FONTSIZEPrimary, PADDING, TEXTCOLOR} from "../common/Variables";
-// @ts-ignore
-import realizm from "../common/assets/realizm.jpg"
 import {useAppSelector} from "../CustomHooks/CustomHooks";
 
 export const TaskView = () => {
     const task = useAppSelector(state => state.navigateParamsState.currentTask)
 
     return (
-        <ImageBackground
-            style={[styles.modalContainer]}
-            source={realizm}
-            borderRadius={10}
-            resizeMode={"cover"}>
+        <View
+            style={[styles.container]}>
             <Text style={[styles.title]}>{task.title}</Text>
             <View style={[styles.taskBar]}>
                 <CustomButton>check</CustomButton>
                 <CustomButton>delete</CustomButton>
                 <CustomButton>edit</CustomButton>
             </View>
-        </ImageBackground>
+        </View>
     )
 }
 const styles = StyleSheet.create({
     checkedTask: {
         backgroundColor: BACKGROUNDCOLOR
     },
-    modalContainer: {
+    container: {
         paddingTop: StatusBar.currentHeight || 0,
         paddingHorizontal: PADDING / 4,
         flex: 1,

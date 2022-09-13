@@ -2,8 +2,6 @@ import {BaseQueryFn, createApi} from "@reduxjs/toolkit/dist/query/react";
 import {AuthDataType, Data, GetTaskType, Item, LoginPayloadType, TaskItem, TodoListItem} from "./types/types";
 import axios, {AxiosError, AxiosRequestConfig} from "axios";
 import {loadStorage, saveStorage} from "../Utils/AsyncStorageUtils";
-import {TaskType} from "../BLL/TaskReducer";
-
 
 const axiosQuery = (
     {baseUrl, withCredentials, headers}:
@@ -21,6 +19,8 @@ const axiosQuery = (
     unknown,
     unknown> =>
     async ({url, method, data, params}) => {
+        // из-за того что бек расчитан под работу только с вэб приложениями, приходится имитировать браузерные запросы
+        //прокидывая браузерные куки с каждым запросом
         const cookie = await loadStorage("Cookie")
         if (cookie) {
             headers = {
@@ -107,7 +107,8 @@ export const Api = createApi({
 
         postTask: build.mutation<Data<Item<TaskItem>>, { todolistId: string, title: string }>({
             query: ({todolistId, title}) => {
-              return  {url: `/todo-lists/${todolistId}/tasks`, method: "post", data: {title}}},
+                return {url: `/todo-lists/${todolistId}/tasks`, method: "post", data: {title}}
+            },
             invalidatesTags: ["postTask"]
         }),
 
