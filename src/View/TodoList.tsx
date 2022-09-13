@@ -37,6 +37,7 @@ export const TodoList = () => {
     if (isLoading) {
         return <ActivityIndicator/>
     }
+
     return (
         <FlatList
             data={todoList}

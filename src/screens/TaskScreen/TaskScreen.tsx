@@ -4,8 +4,9 @@ import React from "react";
 import {TaskList} from "../../View/TaskList";
 import {createBottomTabNavigator} from "@react-navigation/bottom-tabs";
 
+const Tab = createBottomTabNavigator<TasksScreenStackParamList>()
+
 export const TaskScreen = () => {
-    const Tab = createBottomTabNavigator<TasksScreenStackParamList>()
     return (
         <Tab.Navigator
             tabBar={() => <></>}

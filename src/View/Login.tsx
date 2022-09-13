@@ -28,6 +28,7 @@ export const Login = () => {
             console.log(e)
         }
     }
+
     if (isLoading) {
         return (
             <View style={[styles.loginContainer]}>
@@ -35,6 +36,7 @@ export const Login = () => {
             </View>
         )
     }
+
     if (isError) {
         return (
             <View style={[styles.loginContainer]}>
@@ -42,6 +44,7 @@ export const Login = () => {
             </View>
         )
     }
+
     return (
         <View style={[styles.loginContainer]}>
             <Formik

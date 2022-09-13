@@ -1,7 +1,5 @@
 import {CompositeScreenProps, NavigationProp, NavigatorScreenParams} from "@react-navigation/native";
 import {NativeStackScreenProps} from "@react-navigation/native-stack";
-import {TaskType} from "../../BLL/TaskReducer";
-import {TaskItem, TodoListItem} from "../../DAL/types/types";
 
 export type RootScreenStackParamList = {
     Login: undefined

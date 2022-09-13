@@ -4,16 +4,16 @@ import {TodoList} from "../../View/TodoList";
 import React from "react";
 import {createBottomTabNavigator} from "@react-navigation/bottom-tabs";
 
-const Stack = createBottomTabNavigator<TodoScreenStackParamList>()
+const Tab = createBottomTabNavigator<TodoScreenStackParamList>()
 
 export const TodoScreen = () => {
     return (
-        <Stack.Navigator
+        <Tab.Navigator
             tabBar={() => <></>}
             sceneContainerStyle={{backgroundColor: "rgba(5,5,5,0)"}}
             screenOptions={{headerShown: false,}}>
-            <Stack.Screen name={"TodoList"} component={TodoList}/>
-            <Stack.Screen name={"TaskScreen"} component={TaskScreen}/>
-        </Stack.Navigator>
+            <Tab.Screen name={"TodoList"} component={TodoList}/>
+            <Tab.Screen name={"TaskScreen"} component={TaskScreen}/>
+        </Tab.Navigator>
     )
 }
