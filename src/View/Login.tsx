@@ -13,7 +13,6 @@ export const Login = () => {
     const err = error as {status: number, data:any}
     const [login] = Api.useLoginMutation()
     const navigation = useAppNavigation()
-    console.log(err)
 
     useEffect(() => {
         if (data && data.resultCode === 0) {

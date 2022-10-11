@@ -60,10 +60,10 @@ export const Api = createApi({
         {
             baseUrl: `https://mini-trello-backend.herokuapp.com`,
                 // 'https://social-network.samuraijs.com/api/1.1/',
-            headers: {
-                "API-KEY": "1fb0efe7-1c1f-46ce-bb74-74ed02f7875f"
-            },
-            withCredentials: true
+            // headers: {
+            //     "API-KEY": "1fb0efe7-1c1f-46ce-bb74-74ed02f7875f"
+            // },
+            // withCredentials: true
         }
     ),
     endpoints: ((build) => ({
