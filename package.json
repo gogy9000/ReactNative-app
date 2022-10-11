@@ -2,13 +2,16 @@
   "name": "my-app",
   "version": "1.0.0",
   "main": "node_modules/expo/AppEntry.js",
+  "homepage": "https://gogy9000.github.io/mini-trello-react-native",
   "scripts": {
     "android": "expo start --android",
     "start": "expo start --port 8081 -c",
     "ios": "expo start --ios",
     "web": "expo start --web",
     "debug": "expo start 'rndebugger://set-debugger-loc?host=localhost&port=19001'",
-    "build": "next build"
+    "build": "next build",
+    "deploy": "gh-pages -d web-build",
+    "predeploy": "expo export:web"
   },
   "dependencies": {
     "@react-native-async-storage/async-storage": "~1.17.3",
@@ -44,6 +47,7 @@
     "@types/styled-components": "^5.1.26",
     "@types/styled-components-react-native": "^5.1.3",
     "babel-plugin-styled-components": "^2.0.7",
+    "gh-pages": "^4.0.0",
     "typescript": "~4.3.5"
   },
   "resolutions": {
