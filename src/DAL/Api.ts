@@ -23,18 +23,18 @@ const axiosQuery = (
         //прокидывая браузерные куки с каждым запросом
         const cookie = await loadStorage("Cookie")
         if (cookie) {
-            headers = {
-                ...headers,
-                "cookie": `_ym_d=1649395568; _ym_uid=1649395568426605962; ASP.NET_SessionId=opdrxfnafx0gj2g1ulp5mzs3; _ym_isad=2; ${cookie}`
-            }
+            // headers = {
+            //     ...headers,
+            //     "cookie": `_ym_d=1649395568; _ym_uid=1649395568426605962; ASP.NET_SessionId=opdrxfnafx0gj2g1ulp5mzs3; _ym_isad=2; ${cookie}`
+            // }
         }
         try {
             console.log(headers)
             const result = await axios({url: baseUrl + url, method, data, params, headers, withCredentials})
             console.log(result)
-            if (result.headers["set-cookie"]) {
-                saveStorage("Cookie", result.headers["set-cookie"]?.join(""))
-            }
+            // if (result.headers["set-cookie"]) {
+            //     saveStorage("Cookie", result.headers["set-cookie"]?.join(""))
+            // }
             return {data: result.data}
         } catch (axiosError) {
             if (axiosError instanceof AxiosError) {
