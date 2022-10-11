@@ -41,7 +41,7 @@ export const TodoList = () => {
     return (
         <FlatList
             data={todoList}
-            keyExtractor={(item) => item.id}
+            keyExtractor={(item) => item._id}
             renderItem={render}
             ListHeaderComponent={<Header createTodoHandler={createTodoHandler}/>}
             ListEmptyComponent={<EmptyContent/>}

@@ -11,7 +11,7 @@ export const Tasks: React.FC<TasksProps> = memo(({tasks, todo}) => {
 
     const render: ListRenderItem<TaskItem> = ({item}) => {
         return (
-                <Task todo={todo} key={item.id} task={item}/>
+                <Task todo={todo} key={item._id} task={item}/>
         )
     }
 
@@ -20,9 +20,9 @@ export const Tasks: React.FC<TasksProps> = memo(({tasks, todo}) => {
             <FlatList
                 data={tasks}
                 extraData={tasks}
-                keyExtractor={(item) => item.id}
+                keyExtractor={(item) => item._id}
                 renderItem={render}
-                listKey={todo.id}
+                listKey={todo._id}
             />
         </View>
     )

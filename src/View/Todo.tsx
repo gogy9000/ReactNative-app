@@ -24,8 +24,8 @@ export const Todo: FC<TodoProps> = memo((props) => {
     }, [currentTaskTitle])
 
     const onDeleteTodo = useCallback(() => {
-        deleteTodoHandler && deleteTodoHandler(todo.id)
-    }, [todo.id,deleteTodoHandler])
+        deleteTodoHandler && deleteTodoHandler(todo._id)
+    }, [todo._id,deleteTodoHandler])
 
     return (
         <View style={styles.container}>
