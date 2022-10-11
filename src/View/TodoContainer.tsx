@@ -11,7 +11,7 @@ type TodoContainerProps = {
 
 export const TodoContainer: FC<TodoContainerProps> = memo(({todo}) => {
     const [taskTitle, setTaskTitle] = useState("")
-    const {data, isLoading} = Api.useGetTasksQuery({todolistId: todo.id})
+    const {data, isLoading} = Api.useGetTasksQuery({todolistId: todo._id})
     const [deleteTodo] = Api.useDeleteTodoMutation()
     const [postTask] = Api.usePostTaskMutation()
     const tasks = data?.items
@@ -21,13 +21,13 @@ export const TodoContainer: FC<TodoContainerProps> = memo(({todo}) => {
     }, [taskTitle])
 
     const addTaskHandler = useCallback(() => {
-        postTask({todolistId: todo.id, title: taskTitle})
+        postTask({todolistId: todo._id, title: taskTitle})
         setTaskTitle("")
-    }, [todo.id, taskTitle])
+    }, [todo._id, taskTitle])
 
     const deleteTodoHandler = useCallback((todoId: string) => {
         deleteTodo(todoId)
-    }, [todo.id])
+    }, [todo._id])
 
     return (
         <Todo

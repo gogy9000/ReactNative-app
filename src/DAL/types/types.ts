@@ -9,7 +9,7 @@ export type Item<D=any>={
 }
 
 export type TodoListItem = {
-    "id": string,
+    "_id": string,
     "title": string
     "addedDate": string
     "order": number
@@ -29,7 +29,7 @@ export type TaskItem = {
     priority: number
     startDate: string|null
     deadline: string|null
-    id: string
+    _id: string
     todoListId: string
     order: number
     addedDate: string

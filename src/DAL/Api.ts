@@ -58,7 +58,8 @@ export const Api = createApi({
     tagTypes: ["login", "logout", "postTodo", "deleteTodo", "putTodo", "postTask", "putTask", "deleteTask"],
     baseQuery: axiosQuery(
         {
-            baseUrl: 'https://social-network.samuraijs.com/api/1.1/',
+            baseUrl: `https://mini-trello-backend.herokuapp.com`,
+                // 'https://social-network.samuraijs.com/api/1.1/',
             headers: {
                 "API-KEY": "1fb0efe7-1c1f-46ce-bb74-74ed02f7875f"
             },
@@ -113,7 +114,7 @@ export const Api = createApi({
         }),
 
         putTask: build.mutation<Data<Item<TaskItem>>, TaskItem>({
-            query: (task) => ({url: `/todo-lists/${task.todoListId}/tasks/${task.id}`, method: "put", data: task}),
+            query: (task) => ({url: `/todo-lists/${task.todoListId}/tasks/${task._id}`, method: "put", data: task}),
             invalidatesTags: ["putTask"]
         }),
         deleteTask: build.mutation<Data<{}>, { todolistId: string, taskId: string }>({

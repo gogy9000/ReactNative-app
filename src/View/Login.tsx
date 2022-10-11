@@ -7,13 +7,13 @@ import {MARGIN, PADDING, WIDTH} from "../common/Variables";
 import {commonBorderStyle} from "../common/Styles";
 import {Api} from "../DAL/Api";
 import {useAppNavigation} from "../CustomHooks/CustomHooks";
-import {AxiosError} from "axios";
 
 export const Login = () => {
     const {data, isLoading, error, isError} = Api.useAuthMeQuery()
-    const err = error as AxiosError
+    const err = error as {status: number, data:any}
     const [login] = Api.useLoginMutation()
     const navigation = useAppNavigation()
+    console.log(err)
 
     useEffect(() => {
         if (data && data.resultCode === 0) {
@@ -40,7 +40,12 @@ export const Login = () => {
     if (isError) {
         return (
             <View style={[styles.loginContainer]}>
-                <Text>{err.message}</Text>
+                {
+                    error?
+                        <Text>{err.data}</Text>:
+                        <Text>error</Text>
+                }
+
             </View>
         )
     }
