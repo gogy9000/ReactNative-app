@@ -1,5 +1,7 @@
 import {Dimensions} from "react-native";
-export const {height:HEIGHT,width:WIDTH}=Dimensions.get("screen")
+// export const {height:HEIGHT,width:WIDTH}=Dimensions.get("screen")
+export const HEIGHT=500
+export const WIDTH=500
 export const PADDING = 30
 export const MARGIN=30
 export const FONTSIZEPrimary=22

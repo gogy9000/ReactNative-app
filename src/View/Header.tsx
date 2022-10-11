@@ -35,7 +35,7 @@ export const Header: FC<HeaderProps> = memo(({createTodoHandler}) => {
     return (
         <View style={styles.container}>
             <StyledInput
-                style={[commonStyles.modalInputStyle]}
+                style={[styles.modalInputStyle]}
                 onChangeText={onTextInput}
                 value={inputValue}
                 placeholderTextColor={TEXTCOLOR}
