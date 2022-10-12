@@ -1,7 +1,7 @@
 {
   "files": {
-    "app.js": "/mini-trello-react-native/static/js/app.73736af5.chunk.js",
-    "app.js.map": "/mini-trello-react-native/static/js/app.73736af5.chunk.js.map",
+    "app.js": "/mini-trello-react-native/static/js/app.df3537cf.chunk.js",
+    "app.js.map": "/mini-trello-react-native/static/js/app.df3537cf.chunk.js.map",
     "runtime~app.js": "/mini-trello-react-native/static/js/runtime~app.f13e0c6e.js",
     "runtime~app.js.map": "/mini-trello-react-native/static/js/runtime~app.f13e0c6e.js.map",
     "static/js/2.8aabd84b.chunk.js": "/mini-trello-react-native/static/js/2.8aabd84b.chunk.js",
@@ -17,6 +17,6 @@
   "entrypoints": [
     "static/js/runtime~app.f13e0c6e.js",
     "static/js/2.8aabd84b.chunk.js",
-    "static/js/app.73736af5.chunk.js"
+    "static/js/app.df3537cf.chunk.js"
   ]
 }
