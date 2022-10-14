@@ -38,8 +38,8 @@ export const Task: React.FC<TaskProps> = memo(({task, todo}) => {
 
     return (
         <Pressable onPress={doubleTap()}>
-            <View style={[styles.taskContainer, commonBorderStyle(), task.status === 1 && styles.checkedTask]}>
-                <Text style={[styles.title]}>{task.title}</Text>
+            <View style={styles.taskContainer}>
+                <Text style={styles.title}>{task.title}</Text>
                 <CustomButton styleButton={styles.button} disabled={isLoading} onPress={checkTask}>check</CustomButton>
             </View>
         </Pressable>

@@ -11,7 +11,7 @@ type TodoContainerProps = {
 export const ViewModContainer: FC<TodoContainerProps> = memo(({children}) => {
 
     return (
-        <View style={[styles.todoContainer, commonBorderStyle(0)]}>
+        <View style={styles.todoContainer}>
             {children}
         </View>
     )
@@ -19,7 +19,7 @@ export const ViewModContainer: FC<TodoContainerProps> = memo(({children}) => {
 
 export const styles = StyleSheet.create({
     todoContainer: {
-        width: WIDTH,
+        minWidth: WIDTH,
         minHeight: ((HEIGHT - PADDING * 2) / 4),
         marginVertical: MARGIN / 2,
         alignSelf: "center"

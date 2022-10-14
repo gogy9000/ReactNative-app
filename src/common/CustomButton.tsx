@@ -20,15 +20,18 @@ export const CustomButton: FC<CustomButtonPropsType> = memo((props) => {
         onPress && onPress(event)
     },[onPress])
 
+    const unionStylesButton=Object.assign({},styles.button,styleButton,commonBorderStyle())
+    const unionTitleButton=Object.assign({},styles.title,styleTitle)
+
     return (
         <TouchableHighlight
             onPress={onPressHandler}
             disabled={disabled}
             activeOpacity={!!activeOpacity ? activeOpacity : 0.2}
-            style={[styles.button, commonBorderStyle(), styleButton]}
+            style={unionStylesButton}
             underlayColor={!!underlayColor ? underlayColor : BACKGROUNDCOLOR}
         >
-            <Text style={[styles.title, styleTitle]}>
+            <Text style={unionTitleButton}>
                 {children || title}
             </Text>
         </TouchableHighlight>
@@ -36,7 +39,6 @@ export const CustomButton: FC<CustomButtonPropsType> = memo((props) => {
 })
 const styles = StyleSheet.create({
     button: {
-        minWidth: (WIDTH - PADDING * 2) / 7,
         flexWrap:"nowrap",
         paddingHorizontal: 5,
         justifyContent: "center",
@@ -44,7 +46,7 @@ const styles = StyleSheet.create({
 
     },
     title: {
-        color: TEXTCOLOR,
+        color: 'rgba(5,5,5)',
         fontSize: FONTSIZEPrimary
     }
 })

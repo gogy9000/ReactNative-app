@@ -30,7 +30,7 @@ export const Login = () => {
 
     if (isLoading) {
         return (
-            <View style={[styles.loginContainer]}>
+            <View style={styles.loginContainer}>
                 <ActivityIndicator size={"large"} color={"rgb(255,255,255)"}/>
             </View>
         )
@@ -38,7 +38,7 @@ export const Login = () => {
 
     if (isError) {
         return (
-            <View style={[styles.loginContainer]}>
+            <View style={styles.loginContainer}>
                 {
                     error?
                         <Text>{err.data}</Text>:
@@ -50,21 +50,20 @@ export const Login = () => {
     }
 
     return (
-        <View style={[styles.loginContainer]}>
+        <View style={styles.loginContainer}>
             <Formik
                 initialValues={{email: '', password: ""}}
                 onSubmit={onSubmit}
             >
                 {({handleChange, handleBlur, handleSubmit, values}) => (
-                    <View style={[styles.loginForm, commonBorderStyle()]}>
+                    <View style={styles.loginForm}>
                         <StyledInput
-
                             onChangeText={handleChange('email')}
                             onBlur={handleBlur('email')}
                             value={values.email}
                         />
                         <StyledInput
-                            style={[styles.loginTextField]}
+                            style={styles.loginTextField}
                             onChangeText={handleChange('password')}
                             onBlur={handleBlur('password')}
                             value={values.password}

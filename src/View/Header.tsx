@@ -1,5 +1,5 @@
-import {StyleSheet, View, StatusBar} from "react-native";
-import {BACKGROUNDCOLOR, HEIGHT, PADDING, TEXTCOLOR, WIDTH} from "../common/Variables";
+import {StyleSheet, View, StatusBar, TextInput, Dimensions} from "react-native";
+import {BACKGROUNDCOLOR, HEIGHT, PADDING, TEXTCOLOR, WIDTH,} from "../common/Variables";
 import {FC, memo, useCallback, useEffect, useState} from "react";
 import {CustomButton} from "../common/CustomButton";
 import {commonStyles} from "../common/Styles";
@@ -17,6 +17,7 @@ export const Header: FC<HeaderProps> = memo(({createTodoHandler}) => {
     const navigation = useAppNavigation()
     const {data} = Api.useAuthMeQuery()
 
+
     const onTextInput = useCallback((value: string) => {
         setInputValue(value)
     }, [inputValue])
@@ -32,10 +33,12 @@ export const Header: FC<HeaderProps> = memo(({createTodoHandler}) => {
         }
     }, [data])
 
+
+
     return (
         <View style={styles.container}>
             <StyledInput
-                style={[styles.modalInputStyle]}
+                style={styles.modalInputStyle}
                 onChangeText={onTextInput}
                 value={inputValue}
                 placeholderTextColor={TEXTCOLOR}
@@ -47,6 +50,7 @@ export const Header: FC<HeaderProps> = memo(({createTodoHandler}) => {
         </View>
     )
 })
+
 
 const styles = StyleSheet.create({
     container: {

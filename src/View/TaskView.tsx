@@ -9,9 +9,9 @@ export const TaskView = () => {
 
     return (
         <View
-            style={[styles.container]}>
-            <Text style={[styles.title]}>{task.title}</Text>
-            <View style={[styles.taskBar]}>
+            style={styles.container}>
+            <Text style={styles.title}>{task.title}</Text>
+            <View style={styles.taskBar}>
                 <CustomButton>check</CustomButton>
                 <CustomButton>delete</CustomButton>
                 <CustomButton>edit</CustomButton>

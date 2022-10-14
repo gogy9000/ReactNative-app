@@ -29,15 +29,15 @@ export const Todo: FC<TodoProps> = memo((props) => {
 
     return (
         <View style={styles.container}>
-            <View style={[styles.titleContainer]}>
+            <View style={styles.titleContainer}>
                 <Text style={styles.title}>{todo.title}</Text>
                 <CustomButton onPress={onDeleteTodo}>delete</CustomButton>
             </View>
             {
                 !viewMod &&
-                <View style={[styles.inputAndButtonBox]}>
+                <View style={styles.inputAndButtonBox}>
                     <StyledInput
-                        style={[styles.input]}
+                        style={styles.input}
                         onChangeText={onChangeTaskTitle}
                         value={currentTaskTitle}
                         placeholderTextColor={TEXTCOLOR}

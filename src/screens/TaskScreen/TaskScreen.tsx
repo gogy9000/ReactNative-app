@@ -9,8 +9,7 @@ const Tab = createBottomTabNavigator<TasksScreenStackParamList>()
 export const TaskScreen = () => {
     return (
         <Tab.Navigator
-            tabBar={() => <></>}
-            sceneContainerStyle={{backgroundColor: "rgba(5,5,5,0)"}}
+            sceneContainerStyle={{backgroundColor: "rgb(100,101,101)"}}
             screenOptions={{headerShown: false,}}
         >
             <Tab.Screen name={"TaskList"} component={TaskList}/>
