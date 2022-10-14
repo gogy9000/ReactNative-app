@@ -1,22 +1,21 @@
 {
   "files": {
-    "app.js": "/mini-trello-react-native/static/js/app.ebb98565.chunk.js",
-    "app.js.map": "/mini-trello-react-native/static/js/app.ebb98565.chunk.js.map",
-    "runtime~app.js": "/mini-trello-react-native/static/js/runtime~app.f13e0c6e.js",
-    "runtime~app.js.map": "/mini-trello-react-native/static/js/runtime~app.f13e0c6e.js.map",
-    "static/js/2.f693fa96.chunk.js": "/mini-trello-react-native/static/js/2.f693fa96.chunk.js",
-    "static/js/2.f693fa96.chunk.js.map": "/mini-trello-react-native/static/js/2.f693fa96.chunk.js.map",
+    "app.js": "/mini-trello-react-native/static/js/app.3f616813.chunk.js",
+    "app.js.map": "/mini-trello-react-native/static/js/app.3f616813.chunk.js.map",
+    "runtime~app.js": "/mini-trello-react-native/static/js/runtime~app.2e91529e.js",
+    "runtime~app.js.map": "/mini-trello-react-native/static/js/runtime~app.2e91529e.js.map",
+    "static/js/2.4724db8d.chunk.js": "/mini-trello-react-native/static/js/2.4724db8d.chunk.js",
+    "static/js/2.4724db8d.chunk.js.map": "/mini-trello-react-native/static/js/2.4724db8d.chunk.js.map",
     "favicon-16.png": "/mini-trello-react-native/favicon-16.png",
     "favicon-32.png": "/mini-trello-react-native/favicon-32.png",
     "favicon.ico": "/mini-trello-react-native/favicon.ico",
     "index.html": "/mini-trello-react-native/index.html",
     "manifest.json": "/mini-trello-react-native/manifest.json",
-    "serve.json": "/mini-trello-react-native/serve.json",
-    "static/js/2.f693fa96.chunk.js.LICENSE.txt": "/mini-trello-react-native/static/js/2.f693fa96.chunk.js.LICENSE.txt"
+    "serve.json": "/mini-trello-react-native/serve.json"
   },
   "entrypoints": [
-    "static/js/runtime~app.f13e0c6e.js",
-    "static/js/2.f693fa96.chunk.js",
-    "static/js/app.ebb98565.chunk.js"
+    "static/js/runtime~app.2e91529e.js",
+    "static/js/2.4724db8d.chunk.js",
+    "static/js/app.3f616813.chunk.js"
   ]
 }
