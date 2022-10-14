@@ -5,6 +5,7 @@ import {FONTSIZEPrimary, PADDING, TEXTCOLOR, WIDTH} from "../common/Variables";
 import React from "react";
 import {StyledInput} from "../styled-components/StyledInput";
 import {TodoListItem} from "../DAL/types/types";
+import {Box, HStack, Input,VStack,Divider} from "native-base";
 
 type TodoProps = {
     viewMod?: boolean
@@ -28,27 +29,26 @@ export const Todo: FC<TodoProps> = memo((props) => {
     }, [todo._id,deleteTodoHandler])
 
     return (
-        <View style={styles.container}>
-            <View style={styles.titleContainer}>
+        <VStack space={1} >
+            <HStack flex={1} justifyContent={"space-between"}>
                 <Text style={styles.title}>{todo.title}</Text>
                 <CustomButton onPress={onDeleteTodo}>delete</CustomButton>
-            </View>
+            </HStack>
             {
                 !viewMod &&
-                <View style={styles.inputAndButtonBox}>
-                    <StyledInput
-                        style={styles.input}
-                        onChangeText={onChangeTaskTitle}
-                        value={currentTaskTitle}
-                        placeholderTextColor={TEXTCOLOR}
-                        placeholder={"task name..."}
-                        caretHidden
+                <HStack space={1}>
+                    <Input flex={1}
+                           placeholder={"task name..."}
+                           placeholderTextColor={TEXTCOLOR}
+                           onChangeText={onChangeTaskTitle}
+                           value={currentTaskTitle}
                     />
                     <CustomButton onPress={onAddTask}>add task</CustomButton>
-                </View>
+                </HStack>
             }
             {children || null}
-        </View>
+            <Divider mb={3}/>
+        </VStack>
     )
 
 })

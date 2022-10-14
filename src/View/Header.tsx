@@ -7,6 +7,7 @@ import {StyledInput} from "../styled-components/StyledInput";
 import React from "react";
 import {Api} from "../DAL/Api";
 import {useAppNavigation} from "../CustomHooks/CustomHooks";
+import {Box, HStack, Input} from "native-base";
 
 type HeaderProps = {
     createTodoHandler: (newTodoTitle: string) => void
@@ -36,18 +37,21 @@ export const Header: FC<HeaderProps> = memo(({createTodoHandler}) => {
 
 
     return (
-        <View style={styles.container}>
-            <StyledInput
-                style={styles.modalInputStyle}
+        <Box flex={1} safeAreaTop bg={"violet.600"} px="1" py="3">
+            <HStack px="1" py="3" space={2}>
+            <Input
+                flex={1}
                 onChangeText={onTextInput}
                 value={inputValue}
                 placeholderTextColor={TEXTCOLOR}
                 placeholder={"Todo..."}
+
             />
             <CustomButton styleButton={styles.button} onPress={onCreateTodo}>
                 Create todo
             </CustomButton>
-        </View>
+            </HStack>
+        </Box>
     )
 })
 

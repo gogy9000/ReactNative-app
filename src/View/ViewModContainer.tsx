@@ -1,8 +1,6 @@
 import {FC, memo, ReactElement} from "react";
-import {StyleSheet, View} from "react-native";
-import {commonBorderStyle} from "../common/Styles";
-import {HEIGHT, MARGIN, PADDING, WIDTH} from "../common/Variables";
 import React from "react";
+import {Box, Center} from "native-base";
 
 type TodoContainerProps = {
     children?: ReactElement
@@ -11,17 +9,12 @@ type TodoContainerProps = {
 export const ViewModContainer: FC<TodoContainerProps> = memo(({children}) => {
 
     return (
-        <View style={styles.todoContainer}>
-            {children}
-        </View>
+        <Center w={"100%"} >
+            <Box maxW="360" w="100%" >
+                {children}
+            </Box>
+        </Center>
+
     )
 })
 
-export const styles = StyleSheet.create({
-    todoContainer: {
-        minWidth: WIDTH,
-        minHeight: ((HEIGHT - PADDING * 2) / 4),
-        marginVertical: MARGIN / 2,
-        alignSelf: "center"
-    },
-})

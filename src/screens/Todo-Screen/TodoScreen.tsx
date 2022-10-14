@@ -9,7 +9,6 @@ const Tab = createBottomTabNavigator<TodoScreenStackParamList>()
 export const TodoScreen = () => {
     return (
         <Tab.Navigator
-
             screenOptions={{headerShown: false,}}>
             <Tab.Screen name={"TodoList"} component={TodoList}/>
             <Tab.Screen name={"TaskScreen"} component={TaskScreen}/>
